@@ -9,6 +9,26 @@ package ModeleDuDomaine;
  *
  * @author vlezaud
  */
-public class Tarologue {
+public class Tarologue extends Medium{
+    
+    private String ecole;
+    private int promotion;
+
+    public String getEcole() {
+        return ecole;
+    }
+
+    public void setEcole(String ecole) {
+        this.ecole = ecole;
+    }
+
+    public int getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(int promotion) {
+        this.promotion = promotion;
+    }
+    
     
 }

@@ -9,6 +9,8 @@ package ModeleDuDomaine;
  *
  * @author vlezaud
  */
-public class Voyant {
+public class Voyant extends Medium{
+    
+    private String support;
     
 }

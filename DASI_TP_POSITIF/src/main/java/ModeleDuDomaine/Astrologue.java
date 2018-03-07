@@ -9,6 +9,17 @@ package ModeleDuDomaine;
  *
  * @author vlezaud
  */
-public class Astrologue {
+public class Astrologue extends Medium{
+    
+    private String cartes;
+
+    public String getCartes() {
+        return cartes;
+    }
+
+    public void setCartes(String cartes) {
+        this.cartes = cartes;
+    }
+    
     
 }
