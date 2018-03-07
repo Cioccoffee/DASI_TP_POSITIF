@@ -47,6 +47,16 @@ public class ProfilAstrologique {
     public void setAnimal(String animal) {
         this.animal = animal;
     }
+
+    public ProfilAstrologique(String signeAstro, String signeChinois, String couleur, String animal) {
+        this.signeAstro = signeAstro;
+        this.signeChinois = signeChinois;
+        this.couleur = couleur;
+        this.animal = animal;
+    }
+
+    public ProfilAstrologique() {
+    }
     
     
     

@@ -14,9 +14,14 @@ import dao.JpaUtil;
 public class main {
     
     //création persistence unit
-    JpaUtil.init();
+    
+    public static void main(String[] args)
+    {
+        JpaUtil.init();
     
     
-    JpaUtil.destroy();
+        JpaUtil.destroy();
+    }
+    
     
 }

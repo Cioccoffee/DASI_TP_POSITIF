@@ -5,10 +5,18 @@
  */
 package dao;
 
+import ModeleDuDomaine.ProfilAstrologique;
+
+
 /**
  *
  * @author vlezaud
  */
-public class ProfilAstrologiqueDAO {
+public class ProfilAstrologiqueDAO{
+    
+    public static void creerProfil(ProfilAstrologique p)
+    {
+        JpaUtil.obtenirEntityManager().persist(p);
+    }
     
 }
