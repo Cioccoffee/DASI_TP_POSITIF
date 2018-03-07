@@ -5,6 +5,8 @@
  */
 package ModeleDuDomaine;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author vlezaud

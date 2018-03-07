@@ -5,10 +5,21 @@
  */
 package dao;
 
+import ModeleDuDomaine.Client;
+
 /**
  *
  * @author vlezaud
  */
 public class ClientDAO {
     
+     public static void creerClient(Client c)
+    {
+        JpaUtil.obtenirEntityManager().persist(c);
+    }
+     
+     public static void updateClient(Client c)
+    {
+        JpaUtil.obtenirEntityManager().merge(c);
+    }
 }
