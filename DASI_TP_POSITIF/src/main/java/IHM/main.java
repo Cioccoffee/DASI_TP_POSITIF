@@ -5,10 +5,18 @@
  */
 package IHM;
 
+import dao.JpaUtil;
+
 /**
  *
  * @author vlezaud
  */
 public class main {
+    
+    //création persistence unit
+    JpaUtil.init();
+    
+    
+    JpaUtil.destroy();
     
 }
