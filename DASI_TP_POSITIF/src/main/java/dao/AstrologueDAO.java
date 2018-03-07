@@ -11,4 +11,6 @@ package dao;
  */
 public class AstrologueDAO {
     
+    
+    
 }

@@ -11,6 +11,7 @@ import java.util.Date;
  *
  * @author vlezaud
  */
+@Entity
 public class Session {
     
     private Date debut;

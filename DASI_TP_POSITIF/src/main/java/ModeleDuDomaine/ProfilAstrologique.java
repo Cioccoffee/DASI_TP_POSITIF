@@ -9,6 +9,7 @@ package ModeleDuDomaine;
  *
  * @author vlezaud
  */
+@Entity
 public class ProfilAstrologique {
     
     private String signeAstro;

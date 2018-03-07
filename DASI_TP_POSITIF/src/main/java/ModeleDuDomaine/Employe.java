@@ -9,6 +9,7 @@ package ModeleDuDomaine;
  *
  * @author vlezaud
  */
+@Entity
 public class Employe {
     
     private String nom;

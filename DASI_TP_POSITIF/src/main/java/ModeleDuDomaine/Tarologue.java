@@ -9,6 +9,7 @@ package ModeleDuDomaine;
  *
  * @author vlezaud
  */
+@Entity
 public class Tarologue extends Medium{
     
     private String ecole;

@@ -9,8 +9,9 @@ package ModeleDuDomaine;
  *
  * @author vlezaud
  */
+@Entity
 public class Medium {
-    
+    @Id
     private String nom;
     private String bio;
 

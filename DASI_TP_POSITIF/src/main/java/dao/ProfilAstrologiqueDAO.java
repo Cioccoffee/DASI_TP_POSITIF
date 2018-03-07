@@ -19,4 +19,10 @@ public class ProfilAstrologiqueDAO{
         JpaUtil.obtenirEntityManager().persist(p);
     }
     
+    public static void updateProfil(ProfilAstrologique p)
+    {
+        JpaUtil.obtenirEntityManager().merge(p);
+    }
+    
+    
 }

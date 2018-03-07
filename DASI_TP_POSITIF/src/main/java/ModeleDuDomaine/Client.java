@@ -11,7 +11,9 @@ import java.util.Date;
  *
  * @author vlezaud
  */
+@Entity
 public class Client {
+    
     
     private String civilite;
     private String nom;
@@ -20,6 +22,7 @@ public class Client {
     private String mail;
     private String motdepasse;
     
+    @Id
     private int id;
     private int tel;
     

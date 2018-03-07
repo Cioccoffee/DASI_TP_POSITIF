@@ -9,7 +9,9 @@ package ModeleDuDomaine;
  *
  * @author vlezaud
  */
+@Entity
 public class Astrologue extends Medium{
+    
     
     private String cartes;
 
