@@ -6,6 +6,7 @@
 package dao;
 
 import ModeleDuDomaine.Client;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -21,5 +22,20 @@ public class ClientDAO {
      public static void updateClient(Client c)
     {
         JpaUtil.obtenirEntityManager().merge(c);
+    }
+     
+    public static Client findClientByName(String name, String fname)
+    {
+        TypedQuery<Client> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT * FROM Client c WHERE c.name = :name AND c.firstname = :fname", 
+                Client.class);
+        query.setParameter("name", name);
+        query.setParameter("fname", fname);
+        return query.getSingleResult();
+    }
+    
+    public static Client findClientById(int id)
+    {
+        return JpaUtil.obtenirEntityManager().find(Client.class ,id);
     }
 }

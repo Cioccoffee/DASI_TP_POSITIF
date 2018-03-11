@@ -5,7 +5,7 @@
  */
 package ModeleDuDomaine;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 class EmployeId{
     private String nom;

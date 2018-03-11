@@ -5,14 +5,10 @@
  */
 package ModeleDuDomaine;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-/**
- *
- * @author vlezaud
- */
-@Entity
+
+@MappedSuperclass
 public class Medium {
     @Id
     private String nom;

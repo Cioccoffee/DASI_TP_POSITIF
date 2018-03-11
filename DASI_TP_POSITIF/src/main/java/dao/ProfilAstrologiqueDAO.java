@@ -8,10 +8,6 @@ package dao;
 import ModeleDuDomaine.ProfilAstrologique;
 
 
-/**
- *
- * @author vlezaud
- */
 public class ProfilAstrologiqueDAO{
     
     public static void creerProfil(ProfilAstrologique p)
@@ -24,5 +20,10 @@ public class ProfilAstrologiqueDAO{
         JpaUtil.obtenirEntityManager().merge(p);
     }
     
+//    public static void obtenirProfil(Client c)
+//    {
+//        JpaUtil.obtenirEntityManager().merge(p);
+//    }
+    //normalement pas besoin, on fait juste un getProfil sur l'objet CLient récupéré
     
 }
