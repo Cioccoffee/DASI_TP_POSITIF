@@ -5,10 +5,9 @@
  */
 package dao;
 
-/**
- *
- * @author vlezaud
- */
+import ModeleDuDomaine.Employe;
+import javax.persistence.TypedQuery;
+
 public class EmployeDAO {
     public static void creerEmploye(Employe e)
     {

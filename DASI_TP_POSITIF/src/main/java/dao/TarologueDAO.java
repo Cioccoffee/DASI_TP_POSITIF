@@ -5,10 +5,39 @@
  */
 package dao;
 
-/**
- *
- * @author vlezaud
- */
+import ModeleDuDomaine.Tarologue;
+import ModeleDuDomaine.Medium;
+import java.util.List;
+import javax.persistence.TypedQuery;
+
+
 public class TarologueDAO {
     
+    public static void creerTarologue(Tarologue e)
+    {
+        JpaUtil.obtenirEntityManager().persist(e);
+    }
+     
+     public static void updateTarologue(Tarologue e)
+    {
+        JpaUtil.obtenirEntityManager().merge(e);
+    }
+     
+    public static Tarologue findTaroByName(String name, String fname)
+    {
+        TypedQuery<Tarologue> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT * FROM Tarologue c WHERE c.name = :name AND c.firstname = :fname", 
+                Tarologue.class);
+        query.setParameter("name", name);
+        query.setParameter("fname", fname);
+        return query.getSingleResult();
+    }
+    
+    public static List<Medium> findAllTaro()
+    {
+        TypedQuery<Tarologue> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT * FROM Tarologue", 
+                Tarologue.class);
+        return query.getResultList();
+    }
 }
