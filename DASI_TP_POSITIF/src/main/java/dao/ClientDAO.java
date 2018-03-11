@@ -8,10 +8,7 @@ package dao;
 import ModeleDuDomaine.Client;
 import javax.persistence.TypedQuery;
 
-/**
- *
- * @author vlezaud
- */
+
 public class ClientDAO {
     
      public static void creerClient(Client c)
