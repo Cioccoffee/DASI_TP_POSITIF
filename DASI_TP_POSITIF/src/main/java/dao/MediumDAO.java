@@ -48,9 +48,9 @@ public class MediumDAO {
         if(s.equals("astrologue")){
             return AstrologueDAO.findAllAstro();
         } else if(s.equals("tarologue")){
-            
+            return TarologueDAO.findAllTaro();
         }else{
-            
+            return VoyantDAO.findAllVoyant();
         }
         
     }

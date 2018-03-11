@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 
 
 public class VoyantDAO {
+    
     public static void creerVoyant(Voyant e)
     {
         JpaUtil.obtenirEntityManager().persist(e);
