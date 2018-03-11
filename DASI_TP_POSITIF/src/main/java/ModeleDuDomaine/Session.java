@@ -8,17 +8,20 @@ package ModeleDuDomaine;
 import java.util.Date;
 import javax.persistence.Entity;
 
-/**
- *
- * @author vlezaud
- */
-@Entity
+class SessionId{
+     private Date debut;
+     private Client client;
+}
+
+@Entity @IdClass(SessionId.class)
 public class Session {
     
+    @Id
     private Date debut;
+    // il faut une date qui inclut l'heure
     private Date fin;
     private String comment;
-    
+    @Id
     private Client client;
     private Employe employe;
     private Medium medium;

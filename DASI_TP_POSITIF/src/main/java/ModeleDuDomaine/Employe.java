@@ -7,14 +7,17 @@ package ModeleDuDomaine;
 
 import javax.persistence.Entity;
 
-/**
- *
- * @author vlezaud
- */
-@Entity
+class EmployeId{
+    private String nom;
+    private String prenom;
+}
+
+@Entity @IdClass(EmployeId.class)
 public class Employe {
     
+    @Id
     private String nom;
+    @Id
     private String prenom;
     private String motdepasse;
     
