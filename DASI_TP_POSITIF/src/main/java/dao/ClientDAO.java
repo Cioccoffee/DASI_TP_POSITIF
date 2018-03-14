@@ -6,6 +6,7 @@
 package dao;
 
 import ModeleDuDomaine.Client;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 
@@ -43,5 +44,11 @@ public class ClientDAO {
                 Client.class);
         query.setParameter("mail", mail);
         return query.getSingleResult();
+    }
+    
+    public static int getHighestID(){
+        Query query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT max(d) FROM Client");
+        return (int) query.getSingleResult();
     }
 }
