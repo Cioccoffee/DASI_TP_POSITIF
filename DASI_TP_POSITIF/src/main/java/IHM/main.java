@@ -6,9 +6,10 @@
 package IHM;
 
 import dao.JpaUtil;
+import service.Service;
 
 /**
- *
+ 
  * @author vlezaud
  */
 public class main {
@@ -19,7 +20,18 @@ public class main {
     {
         JpaUtil.init();
     
-    
+        Service.Inscription("Roger", "Lamy", "Monsieur", 
+            2, 2, 2, "vic@fjzk.com", "0446432121", 
+            "mdp", "ugviueg");
+        
+        //Service.Connexion(mail, mdp)
+        
+        
+        
+        
+        
+        
+        
         JpaUtil.destroy();
     }
     

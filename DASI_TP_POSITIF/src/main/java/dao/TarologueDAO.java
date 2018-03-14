@@ -33,7 +33,7 @@ public class TarologueDAO {
         return query.getSingleResult();
     }
     
-    public static List<Medium> findAllTaro()
+    public static List<Tarologue> findAllTaro()
     {
         TypedQuery<Tarologue> query = JpaUtil.obtenirEntityManager().createQuery(
         "SELECT * FROM Tarologue", 

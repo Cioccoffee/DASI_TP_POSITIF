@@ -5,7 +5,7 @@
  */
 package ModeleDuDomaine;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 /**
  *
@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 @Entity
 public class ProfilAstrologique {
     
+    @Id @GeneratedValue(strategy=GenerationType.AUTO) int id;
     private String signeAstro;
     private String signeChinois;
     private String couleur;

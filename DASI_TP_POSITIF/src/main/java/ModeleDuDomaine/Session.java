@@ -10,20 +10,27 @@ import javax.persistence.*;
 
 class SessionId{
      private Date debut;
-     private Client client;
+     //@OneToOne
+     private int client;
 }
 
 @Entity @IdClass(SessionId.class)
 public class Session {
     
     @Id
+    @Temporal(TemporalType.DATE)
     private Date debut;
     // il faut une date qui inclut l'heure
+    @Temporal(TemporalType.DATE)
     private Date fin;
     private String comment;
+    
     @Id
+    @OneToOne
     private Client client;
+    @OneToOne
     private Employe employe;
+    @OneToOne
     private Medium medium;
 
     public Date getDebut() {

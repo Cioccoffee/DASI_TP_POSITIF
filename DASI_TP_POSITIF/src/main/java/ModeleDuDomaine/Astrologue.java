@@ -11,7 +11,7 @@ import javax.persistence.Entity;
  *
  * @author vlezaud
  */
-@Entity
+//@Entity = ne pas mettre car id hérité
 public class Astrologue extends Medium{
     
     

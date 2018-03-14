@@ -33,7 +33,7 @@ public class VoyantDAO {
         return query.getSingleResult();
     }
     
-    public static List<Medium> findAllVoyant()
+    public static List<Voyant> findAllVoyant()
     {
         TypedQuery<Voyant> query = JpaUtil.obtenirEntityManager().createQuery(
         "SELECT * FROM Voyant", 

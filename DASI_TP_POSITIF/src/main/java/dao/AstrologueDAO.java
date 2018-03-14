@@ -32,7 +32,7 @@ public class AstrologueDAO {
         return query.getSingleResult();
     }
     
-    public static List<Medium> findAllAstro()
+    public static List<Astrologue> findAllAstro()
     {
         TypedQuery<Astrologue> query = JpaUtil.obtenirEntityManager().createQuery(
         "SELECT * FROM Astrologue", 

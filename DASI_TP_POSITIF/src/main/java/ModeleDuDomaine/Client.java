@@ -6,8 +6,7 @@
 package ModeleDuDomaine;
 
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  *
@@ -16,6 +15,8 @@ import javax.persistence.Id;
 @Entity
 public class Client {
     
+    @Id @GeneratedValue(strategy=GenerationType.AUTO) 
+    private int id;
     
     private String civilite;
     private String nom;
@@ -24,10 +25,10 @@ public class Client {
     private String mail;
     private String motdepasse;
     
-    @Id
-    private int id;
+    
     private int tel;
     
+    @Temporal(TemporalType.DATE)
     private Date naissance;
 
     private ProfilAstrologique profil;

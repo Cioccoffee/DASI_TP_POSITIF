@@ -37,22 +37,22 @@ public class MediumDAO {
     
     public static List<Medium> findAllMedium(){
         TypedQuery<Medium> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Astrologue UNION SELECT * FROM Tarologue UNION SELECT * FROM Voyant", 
+        "SELECT * FROM Medium", 
                 Medium.class);
         return query.getResultList();
     }
     
-    public static List<Medium> findAllMediumBySpeciality(String s)
-    {
-        
-        if(s.equals("astrologue")){
-            return AstrologueDAO.findAllAstro();
-        } else if(s.equals("tarologue")){
-            return TarologueDAO.findAllTaro();
-        }else{
-            return VoyantDAO.findAllVoyant();
-        }
-        
-    }
+//    public static List<Medium> findAllMediumBySpeciality(String s)
+//    {
+//        
+//        if(s.equals("astrologue")){
+//            return AstrologueDAO.findAllAstro();
+//        } else if(s.equals("tarologue")){
+//            return TarologueDAO.findAllTaro();
+//        }else{
+//            return VoyantDAO.findAllVoyant();
+//        }
+//        
+//    }
     
 }

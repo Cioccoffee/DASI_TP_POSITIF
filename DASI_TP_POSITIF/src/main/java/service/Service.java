@@ -5,9 +5,10 @@
  */
 package service;
 
-import ModeleDuDomaine.Client;
-import dao.ClientDAO;
+import ModeleDuDomaine.*;
+import dao.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -41,7 +42,7 @@ public class Service {
     
     // quitte à part faire de traitement préli, ils vont pas nous filer 
     // des int pour la Date hein
-    public long Inscription(String prenom, String nom, String civilite, 
+    public static long Inscription(String prenom, String nom, String civilite, 
             int jour, int mois, int annee, String mail, String telephone, 
             String mdp, String adresse)
     {
@@ -60,7 +61,7 @@ public class Service {
         
     }
     
-    public boolean VerifierUniciteMail(String mail){
+    public static boolean VerifierUniciteMail(String mail){
         Client c = ClientDAO.findClientByMail(mail);
         if(c!=null)
             return false;
@@ -71,7 +72,7 @@ public class Service {
     
     // QUID DU MDP ???????
     // compléter pour les Dates et tel
-    public void ModifyClient(int id, String prenom, String nom, String civilite, 
+    public static void ModifyClient(int id, String prenom, String nom, String civilite, 
             String jour, String mois, String annee, String mail, String telephone, 
             String mdp, String adresse){
         Client c = ClientDAO.findClientById(id);
@@ -99,5 +100,35 @@ public class Service {
         }
         ClientDAO.updateClient(c);
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //methodes find
+    
+    public static Client findClientById(int id){
+        return ClientDAO.findClientById(id);
+    }
+    
+    public static List<Tarologue> findAllTaro(){
+        return TarologueDAO.findAllTaro();
+    }
+    
+    public static List<Astrologue> findAllAstro(){
+        return AstrologueDAO.findAllAstro();
+    }
+    
+    public static List<Voyant> findAllVoyanto(){
+        return VoyantDAO.findAllVoyant();
+    }
+    
     
 }

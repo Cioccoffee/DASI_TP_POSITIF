@@ -8,9 +8,12 @@ package ModeleDuDomaine;
 import javax.persistence.*;
 
 
-@MappedSuperclass
+// @MappedSuperclass = uniquement si ce n'est pas une entité
+@Entity
+@Inheritance (strategy = InheritanceType.TABLE_PER_CLASS)
 public class Medium {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO) int id;
     private String nom;
     private String bio;
 
