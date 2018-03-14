@@ -15,5 +15,14 @@ import javax.persistence.Entity;
 public class Voyant extends Medium{
     
     private String support;
+
+    public String getSupport() {
+        return support;
+    }
+
+    public void setSupport(String support) {
+        this.support = support;
+    }
+    
     
 }

@@ -22,8 +22,10 @@ public class Service {
     */
     public static long Connexion(String mail, String mdp)
     {
+        JpaUtil.creerEntityManager();
         //chercher client
         Client c = ClientDAO.findClientByMail(mail);
+        JpaUtil.fermerEntityManager();
         // check mdp = right one
         if(c!=null && c.getMotdepasse().equals(mdp))
         
@@ -46,17 +48,28 @@ public class Service {
             int jour, int mois, int annee, String mail, String telephone, 
             String mdp, String adresse)
     {
-        
+        JpaUtil.creerEntityManager();
         //check unique mail
         if(VerifierUniciteMail(mail)){
-            int id = ClientDAO.getHighestID()+1;
+            //int id = ClientDAO.getHighestID()+1;
             Date naissance = new Date(); //init correctement
             int tel = Integer.parseInt(telephone);
-            Client c = new Client(civilite, nom, prenom, adresse, mail, mdp, id, tel, naissance);
-            return id;
+            
+            JpaUtil.ouvrirTransaction();
+            
+            Client c = new Client(civilite, nom, prenom, adresse, mail, mdp, tel, naissance);
+            ClientDAO.creerClient(c);
+            JpaUtil.validerTransaction();
+            
+            JpaUtil.fermerEntityManager();
+            return c.getId();
         }
         else
+        {
+            JpaUtil.fermerEntityManager();
             return -1;
+        }
+            
             
         
     }

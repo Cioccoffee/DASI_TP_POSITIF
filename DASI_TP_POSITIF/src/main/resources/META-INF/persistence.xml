@@ -5,6 +5,7 @@
     <class>ModeleDuDomaine.Astrologue</class>
     <class>ModeleDuDomaine.Client</class>
     <class>ModeleDuDomaine.Employe</class>
+    <class>ModeleDuDomaine.Medium</class>
     <class>ModeleDuDomaine.ProfilAstrologique</class>
     <class>ModeleDuDomaine.Session</class>
     <class>ModeleDuDomaine.Tarologue</class>

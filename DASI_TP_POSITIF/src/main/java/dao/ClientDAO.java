@@ -6,6 +6,7 @@
 package dao;
 
 import ModeleDuDomaine.Client;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -40,10 +41,16 @@ public class ClientDAO {
     public static Client findClientByMail(String mail)
     {
         TypedQuery<Client> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Client c WHERE c.mail = :mail", 
+        "SELECT c FROM Client c WHERE c.mail = :mail", 
                 Client.class);
         query.setParameter("mail", mail);
-        return query.getSingleResult();
+        try{
+            return query.getSingleResult();
+        }
+        catch(NoResultException e){
+           return null; 
+        }
+        
     }
     
     public static int getHighestID(){

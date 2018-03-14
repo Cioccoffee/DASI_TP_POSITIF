@@ -113,16 +113,19 @@ public class Client {
         this.profil = profil;
     }
 
-    public Client(String civilite, String nom, String prenom, String adresse, String mail, String motdepasse, int id, int tel, Date naissance) {
+    public Client(String civilite, String nom, String prenom, String adresse, String mail, String motdepasse, int tel, Date naissance) {
         this.civilite = civilite;
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
         this.mail = mail;
         this.motdepasse = motdepasse;
-        this.id = id;
+        
         this.tel = tel;
         this.naissance = naissance;
+    }
+
+    public Client() {
     }
     
     

@@ -23,8 +23,9 @@ public class main {
         Service.Inscription("Roger", "Lamy", "Monsieur", 
             2, 2, 2, "vic@fjzk.com", "0446432121", 
             "mdp", "ugviueg");
+       
         
-        //Service.Connexion(mail, mdp)
+        System.out.println(Service.Connexion("vic@fjzg.com", "md2"));
         
         
         
