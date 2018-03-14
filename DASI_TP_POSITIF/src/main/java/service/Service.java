@@ -32,6 +32,15 @@ public class Service {
             return -1; 
     }
     
+    /*
+    Tester le caractère NULL des champs avant d'appeler Inscription
+    dans l'UI pour printer un "veuillez remplir..." ou mettre le.s champ.s
+    problématique.s en rouge
+    
+    */
+    
+    // quitte à part faire de traitement préli, ils vont pas nous filer 
+    // des int pour la Date hein
     public long Inscription(String prenom, String nom, String civilite, 
             int jour, int mois, int annee, String mail, String telephone, 
             String mdp, String adresse)
@@ -43,7 +52,7 @@ public class Service {
             Date naissance = new Date(); //init correctement
             int tel = Integer.parseInt(telephone);
             Client c = new Client(civilite, nom, prenom, adresse, mail, mdp, id, tel, naissance);
-            return 0;
+            return id;
         }
         else
             return -1;
@@ -54,10 +63,41 @@ public class Service {
     public boolean VerifierUniciteMail(String mail){
         Client c = ClientDAO.findClientByMail(mail);
         if(c!=null)
-        
             return false;
-        
         else
             return true; 
     }
+    
+    
+    // QUID DU MDP ???????
+    // compléter pour les Dates et tel
+    public void ModifyClient(int id, String prenom, String nom, String civilite, 
+            String jour, String mois, String annee, String mail, String telephone, 
+            String mdp, String adresse){
+        Client c = ClientDAO.findClientById(id);
+        
+        if(!prenom.equalsIgnoreCase("")){
+            c.setPrenom(prenom);
+        }
+        if(!nom.equalsIgnoreCase("")){
+            c.setNom(nom);
+        }
+        if(!civilite.equalsIgnoreCase("")){
+            c.setCivilite(civilite);
+        }
+        if(!mail.equalsIgnoreCase("")){
+            c.setMail(mail);
+        }
+        if(!jour.equalsIgnoreCase("") && !mois.equalsIgnoreCase("") && !annee.equalsIgnoreCase("")){
+            
+        }
+        if(!telephone.equalsIgnoreCase("")){
+            
+        }
+        if(!adresse.equalsIgnoreCase("")){
+            c.setAdresse(adresse);
+        }
+        ClientDAO.updateClient(c);
+    }
+    
 }
