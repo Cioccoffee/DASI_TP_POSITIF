@@ -53,11 +53,10 @@ public class Service {
         if(VerifierUniciteMail(mail)){
             //int id = ClientDAO.getHighestID()+1;
             Date naissance = new Date(); //init correctement
-            int tel = Integer.parseInt(telephone);
             
             JpaUtil.ouvrirTransaction();
             
-            Client c = new Client(civilite, nom, prenom, adresse, mail, mdp, tel, naissance);
+            Client c = new Client(civilite, nom, prenom, adresse, mail, mdp, telephone, naissance);
             ClientDAO.creerClient(c);
             JpaUtil.validerTransaction();
             
@@ -106,7 +105,7 @@ public class Service {
             
         }
         if(!telephone.equalsIgnoreCase("")){
-            
+            c.setTel(telephone);
         }
         if(!adresse.equalsIgnoreCase("")){
             c.setAdresse(adresse);

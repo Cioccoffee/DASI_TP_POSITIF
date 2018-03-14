@@ -24,9 +24,7 @@ public class Client {
     private String adresse;
     private String mail;
     private String motdepasse;
-    
-    
-    private int tel;
+    private String tel;
     
     @Temporal(TemporalType.DATE)
     private Date naissance;
@@ -89,11 +87,11 @@ public class Client {
         this.id = id;
     }
 
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 
@@ -113,7 +111,7 @@ public class Client {
         this.profil = profil;
     }
 
-    public Client(String civilite, String nom, String prenom, String adresse, String mail, String motdepasse, int tel, Date naissance) {
+    public Client(String civilite, String nom, String prenom, String adresse, String mail, String motdepasse, String tel, Date naissance) {
         this.civilite = civilite;
         this.nom = nom;
         this.prenom = prenom;
