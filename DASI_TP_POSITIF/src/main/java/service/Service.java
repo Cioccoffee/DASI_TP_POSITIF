@@ -87,6 +87,10 @@ public class Service {
     public static void ModifyClient(int id, String prenom, String nom, String civilite, 
             String jour, String mois, String annee, String mail, String telephone, 
             String mdp, String adresse){
+        
+        JpaUtil.creerEntityManager();
+        JpaUtil.ouvrirTransaction();
+        
         Client c = ClientDAO.findClientById(id);
         
         if(!prenom.equalsIgnoreCase("")){
@@ -102,7 +106,7 @@ public class Service {
             c.setMail(mail);
         }
         if(!jour.equalsIgnoreCase("") && !mois.equalsIgnoreCase("") && !annee.equalsIgnoreCase("")){
-            
+            c.setNaissance( new Date(Integer.parseInt(annee),Integer.parseInt(mois),Integer.parseInt(jour)) );
         }
         if(!telephone.equalsIgnoreCase("")){
             c.setTel(telephone);
@@ -111,6 +115,9 @@ public class Service {
             c.setAdresse(adresse);
         }
         ClientDAO.updateClient(c);
+        
+        JpaUtil.validerTransaction();
+        JpaUtil.fermerEntityManager();
     }
     
     

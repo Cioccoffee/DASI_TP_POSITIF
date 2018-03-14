@@ -27,6 +27,8 @@ public class main {
         
         System.out.println(Service.Connexion("vic@fjzg.com", "md2"));
         
+        Service.ModifyClient(1, "Gérard", "", "Mme", "", "", "", "", "", "", "");
+        
         
         
         
