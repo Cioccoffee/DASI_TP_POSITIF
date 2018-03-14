@@ -7,31 +7,29 @@ package ModeleDuDomaine;
 
 import javax.persistence.Entity;
 
-/**
- *
- * @author vlezaud
- */
-//@Entity = ne pas mettre car id hérité
+
+@Entity
 public class Tarologue extends Medium{
     
-    private String ecole;
-    private int promotion;
-
-    public String getEcole() {
-        return ecole;
-    }
-
-    public void setEcole(String ecole) {
-        this.ecole = ecole;
-    }
-
-    public int getPromotion() {
-        return promotion;
-    }
-
-    public void setPromotion(int promotion) {
-        this.promotion = promotion;
-    }
     
+    private String cartes;
+
+    public Tarologue(String nom, String bio, String cartes) {
+        this.nom = nom;
+        this.bio = bio;
+        this.cartes = cartes;
+    }
+
+    public Tarologue() {
+    }
+
+    
+     public String getCartes() {
+        return cartes;
+    }
+
+    public void setCartes(String cartes) {
+        this.cartes = cartes;
+    }
     
 }

@@ -14,8 +14,8 @@ import javax.persistence.*;
 public class Medium {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO) int id;
-    private String nom;
-    private String bio;
+    protected String nom;
+    protected String bio;
 
     public String getNom() {
         return nom;

@@ -1,4 +1,4 @@
-package util;
+package service;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -40,7 +40,7 @@ import org.apache.http.message.BasicNameValuePair;
  */
 public class AstroTest {
 
-    final static String MA_CLÉ_ASTRO_API = "XXXXXXXX-Moodle-Clé";
+    final static String MA_CLÉ_ASTRO_API = "ASTRO-02-M0lGLURBU0ktQVNUUk8tQjAy";
 
     public static final String ENCODING_UTF8 = "UTF-8";
     public static final SimpleDateFormat JSON_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");

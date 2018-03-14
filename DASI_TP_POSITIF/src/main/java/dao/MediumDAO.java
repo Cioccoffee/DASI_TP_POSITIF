@@ -28,7 +28,7 @@ public class MediumDAO {
     public static Medium findMediumByName(String name, String fname)
     {
         TypedQuery<Medium> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Medium c WHERE c.name = :name AND c.firstname = :fname", 
+        "SELECT m FROM Medium m WHERE m.name = :name AND m.firstname = :fname", 
                 Medium.class);
         query.setParameter("name", name);
         query.setParameter("fname", fname);
@@ -37,7 +37,7 @@ public class MediumDAO {
     
     public static List<Medium> findAllMedium(){
         TypedQuery<Medium> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Medium", 
+        "SELECT m FROM Medium m", 
                 Medium.class);
         return query.getResultList();
     }

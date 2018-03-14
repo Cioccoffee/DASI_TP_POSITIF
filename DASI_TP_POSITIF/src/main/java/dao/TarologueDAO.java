@@ -26,7 +26,7 @@ public class TarologueDAO {
     public static Tarologue findTaroByName(String name, String fname)
     {
         TypedQuery<Tarologue> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Tarologue c WHERE c.name = :name AND c.firstname = :fname", 
+        "SELECT c FROM Tarologue c WHERE c.name = :name AND c.firstname = :fname", 
                 Tarologue.class);
         query.setParameter("name", name);
         query.setParameter("fname", fname);
@@ -36,7 +36,7 @@ public class TarologueDAO {
     public static List<Tarologue> findAllTaro()
     {
         TypedQuery<Tarologue> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Tarologue", 
+        "SELECT t FROM Tarologue t", 
                 Tarologue.class);
         return query.getResultList();
     }

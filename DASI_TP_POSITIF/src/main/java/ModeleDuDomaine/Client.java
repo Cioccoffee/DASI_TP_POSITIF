@@ -29,6 +29,7 @@ public class Client {
     @Temporal(TemporalType.DATE)
     private Date naissance;
 
+    @OneToOne(cascade=CascadeType.PERSIST)
     private ProfilAstrologique profil;
             
     public String getCivilite() {

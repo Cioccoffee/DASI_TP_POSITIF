@@ -26,7 +26,7 @@ public class VoyantDAO {
     public static Voyant findVoyantByName(String name, String fname)
     {
         TypedQuery<Voyant> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Voyant c WHERE c.name = :name AND c.firstname = :fname", 
+        "SELECT c FROM Voyant c WHERE c.name = :name AND c.firstname = :fname", 
                 Voyant.class);
         query.setParameter("name", name);
         query.setParameter("fname", fname);
@@ -36,7 +36,7 @@ public class VoyantDAO {
     public static List<Voyant> findAllVoyant()
     {
         TypedQuery<Voyant> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Voyant", 
+        "SELECT v FROM Voyant v", 
                 Voyant.class);
         return query.getResultList();
     }

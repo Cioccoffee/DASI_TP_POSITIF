@@ -5,6 +5,7 @@
  */
 package ModeleDuDomaine;
 
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -60,6 +61,14 @@ public class ProfilAstrologique {
     }
 
     public ProfilAstrologique() {
+        
+    }
+    
+    public ProfilAstrologique(List<String> infos) {
+        this.signeAstro = infos.get(0);
+        this.signeChinois = infos.get(1);
+        this.couleur = infos.get(2);
+        this.animal = infos.get(3);
     }
     
     

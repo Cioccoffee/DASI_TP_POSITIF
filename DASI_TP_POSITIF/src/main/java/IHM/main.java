@@ -5,7 +5,13 @@
  */
 package IHM;
 
+
+import ModeleDuDomaine.Astrologue;
+import ModeleDuDomaine.Medium;
+import ModeleDuDomaine.Tarologue;
+import ModeleDuDomaine.Voyant;
 import dao.JpaUtil;
+import java.util.List;
 import service.Service;
 
 /**
@@ -20,18 +26,28 @@ public class main {
     {
         JpaUtil.init();
     
-        Service.Inscription("Roger", "Lamy", "Monsieur", 
-            2, 2, 2, "vic@fjzk.com", "0446432121", 
-            "mdp", "ugviueg");
-       
+//        Service.Inscription("Roger", "Lama", "Monsieur", 
+//            "2", "2", "2", "vix@fjzk.com", "0446432121", 
+//            "mdp", "ugviueg");
+//       
+//        
+//        System.out.println(Service.Connexion("vic@fjzg.com", "md2"));
+//        
+//        Service.ModifyClient(1, "Gérard", "", "Mme", "", "", "", "", "", "", "");
+//        
+//        Service.creerMedium();
+//        
+        List<Medium> lm = Service.findAllMedium();
+        for(int i = 0; i < lm.size(); i++) System.out.println(lm.get(i).getNom());
         
-        System.out.println(Service.Connexion("vic@fjzg.com", "md2"));
+        List<Voyant> lv = Service.findAllVoyant();
+        for(int i = 0; i < lv.size(); i++) System.out.println("v : "+lv.get(i).getNom());
         
-        Service.ModifyClient(1, "Gérard", "", "Mme", "", "", "", "", "", "", "");
+        List<Astrologue> la = Service.findAllAstro();
+        for(int i = 0; i < la.size(); i++) System.out.println("a : "+la.get(i).getNom());
         
-        
-        
-        
+        List<Tarologue> lt = Service.findAllTaro();
+        for(int i = 0; i < lt.size(); i++) System.out.println("t : "+lt.get(i).getNom());
         
         
         

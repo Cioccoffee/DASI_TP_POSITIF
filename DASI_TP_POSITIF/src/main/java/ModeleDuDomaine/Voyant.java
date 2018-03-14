@@ -7,11 +7,8 @@ package ModeleDuDomaine;
 
 import javax.persistence.Entity;
 
-/**
- *
- * @author vlezaud
- */
-//@Entity = ne pas mettre car id hérité
+
+@Entity
 public class Voyant extends Medium{
     
     private String support;
@@ -22,6 +19,15 @@ public class Voyant extends Medium{
 
     public void setSupport(String support) {
         this.support = support;
+    }
+
+    public Voyant(String nom, String bio, String support) {
+        this.nom = nom;
+        this.bio = bio;
+        this.support = support;
+    }
+
+    public Voyant() {
     }
     
     

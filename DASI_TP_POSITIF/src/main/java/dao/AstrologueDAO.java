@@ -25,7 +25,7 @@ public class AstrologueDAO {
     public static Astrologue findAstroByName(String name, String fname)
     {
         TypedQuery<Astrologue> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Astrologue c WHERE c.name = :name AND c.firstname = :fname", 
+        "SELECT c FROM Astrologue c WHERE c.name = :name AND c.firstname = :fname", 
                 Astrologue.class);
         query.setParameter("name", name);
         query.setParameter("fname", fname);
@@ -35,7 +35,7 @@ public class AstrologueDAO {
     public static List<Astrologue> findAllAstro()
     {
         TypedQuery<Astrologue> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Astrologue", 
+        "SELECT a FROM Astrologue a", 
                 Astrologue.class);
         return query.getResultList();
     }
