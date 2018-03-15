@@ -5,6 +5,7 @@
  */
 package ModeleDuDomaine;
 
+import java.util.List;
 import javax.persistence.*;
 
 
@@ -17,6 +18,8 @@ public class Medium {
     protected String nom;
     protected String bio;
 
+    protected List<Employe> listEmploye /*= new List<Employe>()*/;
+    
     public String getNom() {
         return nom;
     }
@@ -32,6 +35,12 @@ public class Medium {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
+    public List<Employe> getListEmploye() {
+        return listEmploye;
+    }
     
-    
+    public void addEmploye(Employe e) {
+        this.listEmploye.add(e);
+    }
 }

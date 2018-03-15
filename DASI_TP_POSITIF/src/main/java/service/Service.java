@@ -13,10 +13,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author vlezaud
- */
 public class Service {
     
     /*
@@ -44,8 +40,6 @@ public class Service {
     problématique.s en rouge
     
     */
-    
-    
     public static long Inscription(String prenom, String nom, String civilite, 
             String jour, String mois, String annee, String mail, String telephone, 
             String mdp, String adresse)
@@ -145,7 +139,16 @@ public class Service {
         JpaUtil.fermerEntityManager();
     }
     
-    
+    public static Employe trouverEmployeDispo(Medium m){
+        //MediumDAO.findMediumByName(name);
+        int min_affectations = m.getListEmploye().get(0).getAffectations();
+        Employe selected = m.getListEmploye().get(0);
+        for(int i = 1; i < m.getListEmploye().size(); i++){
+            if(m.getListEmploye().get(i).getAffectations() < min_affectations )
+                selected = m.getListEmploye().get(i);
+        }
+        return selected;
+    }
     
     public static void creerMedium()
     {
@@ -165,7 +168,6 @@ public class Service {
         JpaUtil.fermerEntityManager();
         
     }
-    
     
     public static void creerTarologue(String nom, String commentaire, String cartes)
     {

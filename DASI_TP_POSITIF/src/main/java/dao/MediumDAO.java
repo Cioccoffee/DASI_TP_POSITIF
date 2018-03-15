@@ -25,13 +25,12 @@ public class MediumDAO {
         JpaUtil.obtenirEntityManager().merge(e);
     }
      
-    public static Medium findMediumByName(String name, String fname)
+    public static Medium findMediumByName(String name)
     {
         TypedQuery<Medium> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT m FROM Medium m WHERE m.name = :name AND m.firstname = :fname", 
+        "SELECT m FROM Medium m WHERE m.nom = :name", 
                 Medium.class);
         query.setParameter("name", name);
-        query.setParameter("fname", fname);
         return query.getSingleResult();
     }
     
