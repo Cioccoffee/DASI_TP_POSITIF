@@ -25,10 +25,9 @@ public class main {
     public static void main(String[] args)
     {
         JpaUtil.init();
-    
-//        Service.Inscription("Roger", "Lama", "Monsieur", 
-//            "2", "2", "2", "vix@fjzk.com", "0446432121", 
-//            "mdp", "ugviueg");
+        
+        Service.initDB();
+//        Service.Inscription("Prenom", "nom"," civilite", "1", "1", "1", "mail", "telephone", "mdp", "adresse");
 //       
 //        
 //        System.out.println(Service.Connexion("vic@fjzg.com", "md2"));
@@ -37,19 +36,18 @@ public class main {
 //        
 //        Service.creerMedium();
 //        
-        List<Medium> lm = Service.findAllMedium();
-        for(int i = 0; i < lm.size(); i++) System.out.println(lm.get(i).getNom());
-        
-        List<Voyant> lv = Service.findAllVoyant();
-        for(int i = 0; i < lv.size(); i++) System.out.println("v : "+lv.get(i).getNom());
-        
-        List<Astrologue> la = Service.findAllAstro();
-        for(int i = 0; i < la.size(); i++) System.out.println("a : "+la.get(i).getNom());
-        
-        List<Tarologue> lt = Service.findAllTaro();
-        for(int i = 0; i < lt.size(); i++) System.out.println("t : "+lt.get(i).getNom());
-        
-        
+//        List<Medium> lm = Service.findAllMedium();
+//        for(int i = 0; i < lm.size(); i++) System.out.println(lm.get(i).getNom());
+//        
+//        List<Voyant> lv = Service.findAllVoyant();
+//        for(int i = 0; i < lv.size(); i++) System.out.println("v : "+lv.get(i).getNom());
+//        
+//        List<Astrologue> la = Service.findAllAstro();
+//        for(int i = 0; i < la.size(); i++) System.out.println("a : "+la.get(i).getNom());
+//        
+//        List<Tarologue> lt = Service.findAllTaro();
+//        for(int i = 0; i < lt.size(); i++) System.out.println("t : "+lt.get(i).getNom());
+
         
         JpaUtil.destroy();
     }

@@ -75,10 +75,21 @@ public class Service {
             JpaUtil.validerTransaction();
             
             JpaUtil.fermerEntityManager();
+            
+            System.out.println("Expediteur : contact@posit.if");
+            System.out.println("Pour : " + mail);
+            System.out.println("Sujet : Bienvenue chez POSIT'IF");
+            System.out.println("Bonjour " + prenom + ",");
+            System.out.println("Nous vous confirmons votre inscription au service POSIT'IF. Votre numéro de client est : " + c.getId());
             return c.getId();
         }
         else
         {
+            System.out.println("Expediteur : contact@posit.if");
+            System.out.println("Pour : " + mail);
+            System.out.println("Sujet : Bienvenue chez POSIT'IF");
+            System.out.println("Bonjour " + prenom + ",");
+            System.out.println("Votre inscription au service POSIT'IF a malencontreusement échoué... Merci de recommencer ultérieurement.");
             JpaUtil.fermerEntityManager();
             return -1;
         }
@@ -156,11 +167,50 @@ public class Service {
     }
     
     
+    public static void creerTarologue(String nom, String commentaire, String cartes)
+    {
+        Tarologue t = new Tarologue(nom,commentaire,cartes);
+        
+        JpaUtil.creerEntityManager();
+        JpaUtil.ouvrirTransaction();
+        TarologueDAO.creerTarologue(t);
+        JpaUtil.validerTransaction();
+        JpaUtil.fermerEntityManager();
+    }
     
+    public static void creerAstrologue(String nom, String bio, String ecole, String promo)
+    {
+        Astrologue t = new Astrologue(nom,bio,ecole,promo);
+        
+        JpaUtil.creerEntityManager();
+        JpaUtil.ouvrirTransaction();
+        AstrologueDAO.creerAstrologue(t);
+        JpaUtil.validerTransaction();
+        JpaUtil.fermerEntityManager();
+    }
     
+    public static void creerVoyant(String nom, String commentaire, String support)
+    {
+        Voyant t = new Voyant(nom,commentaire,support);
+        
+        JpaUtil.creerEntityManager();
+        JpaUtil.ouvrirTransaction();
+        VoyantDAO.creerVoyant(t);
+        JpaUtil.validerTransaction();
+        JpaUtil.fermerEntityManager();
+    }
     
-    
-    
+   public static void initDB()
+   {
+       Service.creerVoyant("Gwenaël", "Spécialistes au-delà de TOUTES les frontières.","Boule de Cristal");
+       Service.creerVoyant("J. Dalmarre", "Votre avenir est devant vous : regardons-le ensemble !","Marc de Café");
+       
+       Service.creerTarologue("Mme Irma", "Comprenez votre entourage grâce à mes cartes ! Résiltats rapides", "Tarot de Marseille");
+       Service.creerTarologue("Mme Lisa Maria NGUYINIA", "Mes cartes spécialisées pour la région Bretagne répondront à toutes vos questions personnelles", "Tarot de Brocéliande");
+       
+       Service.creerAstrologue("Mme Sara", "Basée à Champigny-sur-Marne, Mme Sata vous révèlera votre avenir pour éclairer votre passé", "Ecole Normale Supérieure d'Astrologie (ENS-Astro)", "2006");
+       Service.creerAstrologue("Mme Sara", "Avenr, avenir, que nous réserves-tu ? N'attendez plus, demandez à me consulter !", "Institut des Nouveaux Savoirs Astrologiques", "2010");
+   }
     //methodes find
     
     public static Client findClientById(int id){
