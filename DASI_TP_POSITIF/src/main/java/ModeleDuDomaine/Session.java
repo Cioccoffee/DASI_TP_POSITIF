@@ -80,6 +80,18 @@ public class Session {
     public void setMedium(Medium medium) {
         this.medium = medium;
     }
+
+    public Session() {
+    }
+
+    public Session(Date debut, Date fin, String comment, Client client, Employe employe, Medium medium) {
+        this.debut = debut;
+        this.fin = fin;
+        this.comment = comment;
+        this.client = client;
+        this.employe = employe;
+        this.medium = medium;
+    }
     
     
     

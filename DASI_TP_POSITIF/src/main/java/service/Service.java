@@ -263,18 +263,21 @@ public class Service {
            ajouterEmployeToMedium(e,lm.get(i));
         
    }
-//   public static void ajouterEmploye(Employe e, List<Medium> lm){
-//        
-//        
-//        //Medium current = new Medium();
-//        
-//   }
    
    public static void ajouterEmployeToMedium(Employe e, Medium m){
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
        m.addEmploye(e);
        MediumDAO.updateMedium(m);
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+   }
+   
+   public static void creerSession(Client c, Employe e, Medium m, Date debut, Date fin, String commentaire){
+       Session s  = new Session(debut,fin,commentaire,c,e,m);
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       SessionDAO.creerSession(s);
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
    }

@@ -49,7 +49,7 @@ public class main {
 //        List<Tarologue> lt = Service.findAllTaro();
 //        for(int i = 0; i < lt.size(); i++) System.out.println("t : "+lt.get(i).getNom());
 
-        Service.ajouterEmploye(new Employe("Nom","PNom","mdp"), Service.findAllMedium());
+        //Service.ajouterEmploye(new Employe("Nom","PNom","mdp"), Service.findAllMedium());
 
         JpaUtil.destroy();
     }
