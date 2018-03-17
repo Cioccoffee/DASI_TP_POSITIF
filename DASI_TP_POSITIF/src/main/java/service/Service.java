@@ -9,6 +9,7 @@ import ModeleDuDomaine.*;
 import dao.*;
 import java.io.IOException;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -240,7 +241,9 @@ public class Service {
     //methodes find
     
    public static void creerEmploye(String nom, String prenom, String mdp){
-       List<Medium> lm;
+       List<Medium> lm = new LinkedList<Medium>();
+       lm.add(new Medium());
+       lm.clear();
        creerEmploye(nom,prenom,mdp, lm);
    }
    
