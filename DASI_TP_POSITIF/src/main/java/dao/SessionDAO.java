@@ -83,4 +83,20 @@ public class SessionDAO {
                 Session.class);
         return query.getResultList();
     }
+    
+    public static List<Integer> getNBSessionByEmploye(){
+        TypedQuery<Integer> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT count(s) FROM Session s GROUP BY Employe", 
+                Integer.class);
+        return query.getResultList();
+    }
+    
+    public static List<Integer> getNBSessionByMedium(){
+        TypedQuery<Integer> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT count(s) FROM Session s GROUP BY Medium", 
+                Integer.class);
+        return query.getResultList();
+    }
+    
+    
 }

@@ -314,4 +314,17 @@ public class Service {
         return lm;
     }
     
+    
+    //statistiques
+    //nb de voyances/med et /emp
+    // % / emp des sessions
+    
+    public static void getNBSessionByEmploye(){
+        
+    }
+    
+    public static void getNBSessionByMedium(){
+        
+    }
+    
 }
