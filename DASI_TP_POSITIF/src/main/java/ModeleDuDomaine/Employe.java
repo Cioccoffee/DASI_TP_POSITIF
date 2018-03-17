@@ -67,6 +67,17 @@ public class Employe {
     public void setDisponibilite(boolean disponibilite) {
         this.disponibilite = disponibilite;
     }
+
+    public Employe(String nom, String prenom, String motdepasse) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.motdepasse = motdepasse;
+        this.affectations = 0;
+        this.disponibilite = true;
+    }
+
+    public Employe() {
+    }
     
     
 }

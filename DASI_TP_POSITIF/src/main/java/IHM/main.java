@@ -7,6 +7,7 @@ package IHM;
 
 
 import ModeleDuDomaine.Astrologue;
+import ModeleDuDomaine.Employe;
 import ModeleDuDomaine.Medium;
 import ModeleDuDomaine.Tarologue;
 import ModeleDuDomaine.Voyant;
@@ -26,7 +27,7 @@ public class main {
     {
         JpaUtil.init();
         
-        Service.initDB();
+        //Service.initDB();
 //        Service.Inscription("Prenom", "nom"," civilite", "1", "1", "1", "mail", "telephone", "mdp", "adresse");
 //       
 //        
@@ -48,7 +49,8 @@ public class main {
 //        List<Tarologue> lt = Service.findAllTaro();
 //        for(int i = 0; i < lt.size(); i++) System.out.println("t : "+lt.get(i).getNom());
 
-        
+        Service.ajouterEmploye(new Employe("Nom","PNom","mdp"), Service.findAllMedium());
+
         JpaUtil.destroy();
     }
     

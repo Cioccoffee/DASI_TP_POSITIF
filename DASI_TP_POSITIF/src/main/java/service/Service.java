@@ -231,14 +231,51 @@ public class Service {
        Service.creerVoyant("Gwenaël", "Spécialistes au-delà de TOUTES les frontières.","Boule de Cristal");
        Service.creerVoyant("J. Dalmarre", "Votre avenir est devant vous : regardons-le ensemble !","Marc de Café");
        
-       Service.creerTarologue("Mme Irma", "Comprenez votre entourage grâce à mes cartes ! Résiltats rapides", "Tarot de Marseille");
+       Service.creerTarologue("Mme Irma", "Comprenez votre entourage grâce à mes cartes ! Résultats rapides", "Tarot de Marseille");
        Service.creerTarologue("Mme Lisa Maria NGUYINIA", "Mes cartes spécialisées pour la région Bretagne répondront à toutes vos questions personnelles", "Tarot de Brocéliande");
        
-       Service.creerAstrologue("Mme Sara", "Basée à Champigny-sur-Marne, Mme Sata vous révèlera votre avenir pour éclairer votre passé", "Ecole Normale Supérieure d'Astrologie (ENS-Astro)", "2006");
-       Service.creerAstrologue("Mme Sara", "Avenr, avenir, que nous réserves-tu ? N'attendez plus, demandez à me consulter !", "Institut des Nouveaux Savoirs Astrologiques", "2010");
+       Service.creerAstrologue("Mme Sara", "Basée à Champigny-sur-Marne, Mme Sara vous révèlera votre avenir pour éclairer votre passé", "Ecole Normale Supérieure d'Astrologie (ENS-Astro)", "2006");
+       Service.creerAstrologue("Mme Mounia Mounia", "Avenir, avenir, que nous réserves-tu ? N'attendez plus, demandez à me consulter !", "Institut des Nouveaux Savoirs Astrologiques", "2010");
    }
     //methodes find
     
+   public static void creerEmploye(String nom, String prenom, String mdp){
+       List<Medium> lm;
+       creerEmploye(nom,prenom,mdp, lm);
+   }
+   
+   public static void creerEmploye(String nom, String prenom, String mdp, List<Medium> lm){
+       Employe e = new Employe(nom, prenom, mdp);
+       
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+        
+       EmployeDAO.creerEmploye(e);
+        
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+        
+       for(int i = 0; i < lm.size(); i++)
+            
+           ajouterEmployeToMedium(e,lm.get(i));
+        
+   }
+//   public static void ajouterEmploye(Employe e, List<Medium> lm){
+//        
+//        
+//        //Medium current = new Medium();
+//        
+//   }
+   
+   public static void ajouterEmployeToMedium(Employe e, Medium m){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       m.addEmploye(e);
+       MediumDAO.updateMedium(m);
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+   }
+   
     public static Client findClientById(int id){
         JpaUtil.creerEntityManager();
         Client c = ClientDAO.findClientById(id);
