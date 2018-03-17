@@ -6,6 +6,7 @@
 package dao;
 
 import ModeleDuDomaine.Employe;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 public class EmployeDAO {
@@ -29,4 +30,8 @@ public class EmployeDAO {
         return query.getSingleResult();
     }
     
+    public static int getMaxAffectations(){
+        TypedQuery<Integer> query = JpaUtil.obtenirEntityManager().createQuery("select max(affectations) from Employe e",Integer.class);
+        return query.getSingleResult();
+    }
 }

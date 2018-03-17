@@ -24,6 +24,9 @@ public class Employe {
     private int affectations;
     
     private boolean disponibilite;
+    
+    @Version
+    private int version;
 
     public String getNom() {
         return nom;

@@ -141,14 +141,38 @@ public class Service {
     
     public static Employe trouverEmployeDispo(Medium m){
         //MediumDAO.findMediumByName(name);
-        int min_affectations = m.getListEmploye().get(0).getAffectations();
-        Employe selected = m.getListEmploye().get(0);
+        
+        int min_affectations = EmployeDAO.getMaxAffectations();
+        Employe selected = new Employe();
+        
+        boolean init = false;
+        
         for(int i = 1; i < m.getListEmploye().size(); i++){
-            if(m.getListEmploye().get(i).getAffectations() < min_affectations )
-                selected = m.getListEmploye().get(i);
+            
+            if(m.getListEmploye().get(i).isDisponibilite()){
+                if(!init){
+                    min_affectations = m.getListEmploye().get(i).getAffectations();
+                    selected = m.getListEmploye().get(i);
+                    init = true;
+                }
+                else{
+                    if(m.getListEmploye().get(i).getAffectations() < min_affectations)
+                        selected = m.getListEmploye().get(i);
+                        min_affectations = m.getListEmploye().get(i).getAffectations();
+                }
+            }
         }
-        return selected;
+        if(init) return selected;
+        else return null;
     }
+    
+    public static String notifierEmploye(Client c, Medium m, Employe e){
+        String s ="";
+        s = "Vous avez une demande de voyance \r\n Client : "+c.getCivilite()+" "+c.getPrenom()+" "+c.getNom()+
+                "\r\n Medium : "+m.getNom();
+        return s;
+    }
+    
     
     public static void creerMedium()
     {
