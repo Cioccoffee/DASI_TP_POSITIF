@@ -48,7 +48,7 @@ public class main {
         //Service.Inscription("Jean", "Moulin", "Monsieur", "31", "03", "1991", "jm@mail.com", "0782635917", "mdp", "adresse de JM");
         Client c = Service.findClientById(101);
         JpaUtil.creerEntityManager();
-        Medium m = MediumDAO.findMediumByName("Gwenaël");
+        Medium m = MediumDAO.findMediumByName("Mme Irma");
         JpaUtil.fermerEntityManager();
         Service.findAllMedium();
         Employe e = Service.trouverEmployeDispo(m);
@@ -56,8 +56,10 @@ public class main {
             System.out.println("employe ID = " + e.getNom()+ " "+e.getId());
             //Employe e = Service.traiterDemandeDeVoyance(c, MediumDAO.findMediumByName("Mme Irma"));
             Date debut = new Date();
+            System.out.println("minutes : "+debut.getMinutes());
             //Date fin = debut + 10000;
             Service.creerSession(c, e, m, debut, new Date(), "commentaire");
+            
         }else{
             System.out.println("e est NULL :( ");
         }

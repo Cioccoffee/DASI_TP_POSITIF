@@ -18,10 +18,10 @@ class SessionId{
 public class Session {
     
     @Id
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date debut;
     // il faut une date qui inclut l'heure
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fin;
     private String comment;
     
