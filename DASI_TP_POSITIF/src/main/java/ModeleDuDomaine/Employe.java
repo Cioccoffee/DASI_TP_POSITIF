@@ -7,17 +7,18 @@ package ModeleDuDomaine;
 
 import javax.persistence.*;
 
-class EmployeId{
+/*class EmployeId{
     private String nom;
     private String prenom;
-}
+}*/
 
-@Entity @IdClass(EmployeId.class)
+@Entity //@IdClass(EmployeId.class)
 public class Employe {
-    
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO) int id;
+    //@Id
     private String nom;
-    @Id
+    //@Id
     private String prenom;
     private String motdepasse;
     
@@ -68,6 +69,11 @@ public class Employe {
         this.disponibilite = disponibilite;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    
     public Employe(String nom, String prenom, String motdepasse) {
         this.nom = nom;
         this.prenom = prenom;

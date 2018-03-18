@@ -5,10 +5,12 @@
  */
 package ModeleDuDomaine;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 
 @Entity
+@DiscriminatorValue("Voyant")
 public class Voyant extends Medium{
     
     private String support;

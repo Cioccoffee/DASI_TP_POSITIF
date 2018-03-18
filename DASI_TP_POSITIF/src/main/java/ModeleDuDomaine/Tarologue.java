@@ -5,10 +5,12 @@
  */
 package ModeleDuDomaine;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 
 @Entity
+@DiscriminatorValue("Tarologue")
 public class Tarologue extends Medium{
     
     

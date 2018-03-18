@@ -11,7 +11,8 @@ import javax.persistence.*;
 
 // @MappedSuperclass = uniquement si ce n'est pas une entité
 @Entity
-@Inheritance (strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="medium_type")
 public class Medium {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO) int id;
@@ -43,4 +44,10 @@ public class Medium {
     public void addEmploye(Employe e) {
         this.listEmploye.add(e);
     }
+
+    public int getId() {
+        return id;
+    }
+    
+    
 }

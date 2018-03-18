@@ -6,19 +6,13 @@
 package IHM;
 
 
-import ModeleDuDomaine.Astrologue;
-import ModeleDuDomaine.Employe;
-import ModeleDuDomaine.Medium;
-import ModeleDuDomaine.Tarologue;
-import ModeleDuDomaine.Voyant;
+import ModeleDuDomaine.*;
 import dao.JpaUtil;
+import dao.MediumDAO;
+import java.util.Date;
 import java.util.List;
 import service.Service;
 
-/**
- 
- * @author vlezaud
- */
 public class main {
     
     //création persistence unit
@@ -27,7 +21,7 @@ public class main {
     {
         JpaUtil.init();
         
-        Service.initDB();
+        //Service.initDB();
 //        Service.Inscription("Prenom", "nom"," civilite", "1", "1", "1", "mail", "telephone", "mdp", "adresse");
 //       
 //        
@@ -48,9 +42,26 @@ public class main {
 //        
 //        List<Tarologue> lt = Service.findAllTaro();
 //        for(int i = 0; i < lt.size(); i++) System.out.println("t : "+lt.get(i).getNom());
-
+;
         //Service.ajouterEmploye(new Employe("Nom","PNom","mdp"), Service.findAllMedium());
 
+        //Service.Inscription("Jean", "Moulin", "Monsieur", "31", "03", "1991", "jm@mail.com", "0782635917", "mdp", "adresse de JM");
+        Client c = Service.findClientById(101);
+        JpaUtil.creerEntityManager();
+        Medium m = MediumDAO.findMediumByName("Gwenaël");
+        JpaUtil.fermerEntityManager();
+        Service.findAllMedium();
+        Employe e = Service.trouverEmployeDispo(m);
+        if(e!=null){
+            System.out.println("employe ID = " + e.getNom()+ " "+e.getId());
+            //Employe e = Service.traiterDemandeDeVoyance(c, MediumDAO.findMediumByName("Mme Irma"));
+            Date debut = new Date();
+            //Date fin = debut + 10000;
+            Service.creerSession(c, e, m, debut, new Date(), "commentaire");
+        }else{
+            System.out.println("e est NULL :( ");
+        }
+        
         JpaUtil.destroy();
     }
     

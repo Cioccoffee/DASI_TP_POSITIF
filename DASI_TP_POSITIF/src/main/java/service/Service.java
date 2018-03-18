@@ -152,14 +152,15 @@ public class Service {
     
     public static Employe trouverEmployeDispo(Medium m){
         //MediumDAO.findMediumByName(name);
-        
+        JpaUtil.creerEntityManager();
         int min_affectations = EmployeDAO.getMaxAffectations();
+        JpaUtil.fermerEntityManager();
         Employe selected = new Employe();
         
         boolean init = false;
         
-        for(int i = 1; i < m.getListEmploye().size(); i++){
-            
+        for(int i = 0; i < m.getListEmploye().size(); i++){
+            System.out.println("init = " + init);
             if(m.getListEmploye().get(i).isDisponibilite()){
                 if(!init){
                     min_affectations = m.getListEmploye().get(i).getAffectations();
@@ -173,7 +174,10 @@ public class Service {
                 }
             }
         }
-        if(init) return selected;
+        if(init){
+            selected.setDisponibilite(false);
+            return selected;
+        }
         else return null;
     }
     
@@ -239,15 +243,15 @@ public class Service {
     
    public static void initDB()
    {
-//       Service.creerVoyant("Gwenaël", "Spécialistes au-delà de TOUTES les frontières.","Boule de Cristal");
-//       Service.creerVoyant("J. Dalmarre", "Votre avenir est devant vous : regardons-le ensemble !","Marc de Café");
-//       
-//       Service.creerTarologue("Mme Irma", "Comprenez votre entourage grâce à mes cartes ! Résultats rapides", "Tarot de Marseille");
-//       Service.creerTarologue("Mme Lisa Maria NGUYINIA", "Mes cartes spécialisées pour la région Bretagne répondront à toutes vos questions personnelles", "Tarot de Brocéliande");
-//       
-//       Service.creerAstrologue("Mme Sara", "Basée à Champigny-sur-Marne, Mme Sara vous révèlera votre avenir pour éclairer votre passé", "Ecole Normale Supérieure d'Astrologie (ENS-Astro)", "2006");
-//       Service.creerAstrologue("Mme Mounia Mounia", "Avenir, avenir, que nous réserves-tu ? N'attendez plus, demandez à me consulter !", "Institut des Nouveaux Savoirs Astrologiques", "2010");
-//       
+       /*Service.creerVoyant("Gwenaël", "Spécialistes au-delà de TOUTES les frontières.","Boule de Cristal");
+       Service.creerVoyant("J. Dalmarre", "Votre avenir est devant vous : regardons-le ensemble !","Marc de Café");
+       
+       Service.creerTarologue("Mme Irma", "Comprenez votre entourage grâce à mes cartes ! Résultats rapides", "Tarot de Marseille");
+       Service.creerTarologue("Mme Lisa Maria NGUYINIA", "Mes cartes spécialisées pour la région Bretagne répondront à toutes vos questions personnelles", "Tarot de Brocéliande");
+       
+       Service.creerAstrologue("Mme Sara", "Basée à Champigny-sur-Marne, Mme Sara vous révèlera votre avenir pour éclairer votre passé", "Ecole Normale Supérieure d'Astrologie (ENS-Astro)", "2006");
+       Service.creerAstrologue("Mme Mounia Mounia", "Avenir, avenir, que nous réserves-tu ? N'attendez plus, demandez à me consulter !", "Institut des Nouveaux Savoirs Astrologiques", "2010");
+       */
        List<Astrologue> la = findAllAstro();
        List<Medium> lam = new LinkedList<Medium>();
        for(int i = 0; i < la.size(); i++){

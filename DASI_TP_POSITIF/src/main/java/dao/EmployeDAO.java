@@ -31,7 +31,7 @@ public class EmployeDAO {
     }
     
     public static int getMaxAffectations(){
-        TypedQuery<Integer> query = JpaUtil.obtenirEntityManager().createQuery("select max(affectations) from Employe e",Integer.class);
+        TypedQuery<Integer> query = JpaUtil.obtenirEntityManager().createQuery("SELECT MAX(e.affectations) FROM Employe e",Integer.class);
         return query.getSingleResult();
     }
 }
