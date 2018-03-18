@@ -27,7 +27,7 @@ public class main {
     {
         JpaUtil.init();
         
-        //Service.initDB();
+        Service.initDB();
 //        Service.Inscription("Prenom", "nom"," civilite", "1", "1", "1", "mail", "telephone", "mdp", "adresse");
 //       
 //        

@@ -53,9 +53,9 @@ public class ClientDAO {
         
     }
     
-    public static int getHighestID(){
-        Query query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT max(d) FROM Client");
-        return (int) query.getSingleResult();
-    }
+//    public static int getHighestID(){
+//        Query query = JpaUtil.obtenirEntityManager().createQuery(
+//        "SELECT max(d) FROM Client");
+//        return (int) query.getSingleResult();
+//    }
 }

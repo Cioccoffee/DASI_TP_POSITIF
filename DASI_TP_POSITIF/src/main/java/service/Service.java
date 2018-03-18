@@ -101,7 +101,6 @@ public class Service {
             return true; 
     }
     
-    
     // QUID DU MDP ???????
     // compléter pour les Dates et tel
     public static void ModifyClient(int id, String prenom, String nom, String civilite, 
@@ -138,6 +137,17 @@ public class Service {
         
         JpaUtil.validerTransaction();
         JpaUtil.fermerEntityManager();
+    }
+    
+    /* @param Client c, Medium m
+    @return String = notification Employe si employe dispo
+            else = ""
+    */
+    public static String traiterDemandeDeVoyance(Client c, Medium m){
+        
+        Employe e = trouverEmployeDispo(m);
+        if(e!=null) return notifierEmploye(c,m,e);
+        else return "";
     }
     
     public static Employe trouverEmployeDispo(Medium m){
@@ -237,6 +247,12 @@ public class Service {
        
        Service.creerAstrologue("Mme Sara", "Basée à Champigny-sur-Marne, Mme Sara vous révèlera votre avenir pour éclairer votre passé", "Ecole Normale Supérieure d'Astrologie (ENS-Astro)", "2006");
        Service.creerAstrologue("Mme Mounia Mounia", "Avenir, avenir, que nous réserves-tu ? N'attendez plus, demandez à me consulter !", "Institut des Nouveaux Savoirs Astrologiques", "2010");
+       
+       Service.creerEmploye("GIREUX", "Zouhair", "mdp");
+       Service.creerEmploye("TCHIUMAKOVA", "Nicolas", "mdp");
+       Service.creerEmploye("KEMARO", "Cédric", "mdp");
+       Service.creerEmploye("PAMITESCU", "Olena", "mdp");
+       
    }
     //methodes find
     
@@ -282,12 +298,16 @@ public class Service {
        JpaUtil.fermerEntityManager();
    }
    
-    public static Client findClientById(int id){
+   public static Client findClientById(int id){
         JpaUtil.creerEntityManager();
         Client c = ClientDAO.findClientById(id);
         JpaUtil.fermerEntityManager();
         return c;
     }
+    
+   public static List<Session> findAllCLientSession(int id){
+       return SessionDAO.findSessionByClientId(id);
+   }
     
     public static List<Tarologue> findAllTaro(){
         JpaUtil.creerEntityManager();

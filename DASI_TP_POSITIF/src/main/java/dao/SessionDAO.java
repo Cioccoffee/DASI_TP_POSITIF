@@ -28,42 +28,42 @@ public class SessionDAO {
         JpaUtil.obtenirEntityManager().merge(e);
     }
      
-    public static Session findSessionByClientId(int id)
+    public static List<Session> findSessionByClientId(int id)
     {
         TypedQuery<Session> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Session c WHERE c.client = :id", 
+        "SELECT c FROM Session c WHERE c.client = :id", 
                 Session.class);
         query.setParameter("id", id);
-        return query.getSingleResult();
+        return query.getResultList();
     }
     
-    public static Session findSessionByDate(Date d)
+    public static List<Session> findSessionByDate(Date d)
     {
         TypedQuery<Session> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Session c WHERE c.debut = :deb", 
+        "SELECT c FROM Session c WHERE c.debut = :deb", 
                 Session.class);
         query.setParameter("deb", d);
         // un peu plus complexe = ici date sans heure
         // ATTENTION !!!!!!!!!!!
-        return query.getSingleResult();
+        return query.getResultList();
     }
     
-    public static Session findSessionByMedium(int id)
+    public static List<Session> findSessionByMedium(int id)
     {
         TypedQuery<Session> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Session c WHERE c.medium = :id", 
+        "SELECT c FROM Session c WHERE c.medium = :id", 
                 Session.class);
         query.setParameter("id", id);
-        return query.getSingleResult();
+        return query.getResultList();
     }
     
-    public static Session findSessionByEmploye(Employe e)
+    public static List<Session> findSessionByEmploye(Employe e)
     {
         TypedQuery<Session> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Session c WHERE c.employe = :e", 
+        "SELECT c FROM Session c WHERE c.employe = :e", 
                 Session.class);
         query.setParameter("e", e);
-        return query.getSingleResult();
+        return query.getResultList();
     }
     
 //    public static Session findSessionByClientId(int id)
@@ -79,7 +79,7 @@ public class SessionDAO {
     public static List<Session> findAllSession()
     {
         TypedQuery<Session> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Session", 
+        "SELECT s FROM Session s", 
                 Session.class);
         return query.getResultList();
     }
