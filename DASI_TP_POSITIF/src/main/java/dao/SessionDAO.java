@@ -98,5 +98,11 @@ public class SessionDAO {
         return query.getResultList();
     }
     
-    
+    public static int getNBSessionByMediumId(int id){
+        TypedQuery<Integer> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT count(s) FROM Session s WHERE s.medium=:id", 
+                Integer.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
 }

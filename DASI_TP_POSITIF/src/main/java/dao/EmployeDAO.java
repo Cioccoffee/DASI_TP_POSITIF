@@ -6,6 +6,7 @@
 package dao;
 
 import ModeleDuDomaine.Employe;
+import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -28,6 +29,14 @@ public class EmployeDAO {
         query.setParameter("name", name);
         query.setParameter("fname", fname);
         return query.getSingleResult();
+    }
+    
+    public static List<Employe> findAllEmploye()
+    {
+        TypedQuery<Employe> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT e FROM Employe e", 
+                Employe.class);
+        return query.getResultList();
     }
     
     public static int getMaxAffectations(){

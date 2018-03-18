@@ -73,7 +73,9 @@ public class Employe {
         return id;
     }
 
-    
+    public void addAffectation(){
+        ++affectations;
+    }
     public Employe(String nom, String prenom, String motdepasse) {
         this.nom = nom;
         this.prenom = prenom;

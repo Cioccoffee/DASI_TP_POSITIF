@@ -176,6 +176,7 @@ public class Service {
         }
         if(init){
             selected.setDisponibilite(false);
+            selected.addAffectation();
             return selected;
         }
         else return null;
@@ -360,17 +361,27 @@ public class Service {
         return lm;
     }
     
+    public static List<Employe> findAllEmploye(){
+        JpaUtil.creerEntityManager();
+        List<Employe> le = EmployeDAO.findAllEmploye();
+        JpaUtil.fermerEntityManager();
+        return le;
+    }
     
     //statistiques
     //nb de voyances/med et /emp
     // % / emp des sessions
     
-    public static void getNBSessionByEmploye(){
-        
+    public static int getAffectations(Employe e){
+        return e.getAffectations();
     }
     
-    public static void getNBSessionByMedium(){
-        
+    public static int getNBSessionByMediumId(int id){
+        JpaUtil.creerEntityManager();
+        int count = SessionDAO.getNBSessionByMediumId(id);
+        JpaUtil.fermerEntityManager();
+        return count;
     }
     
+    public static 
 }

@@ -46,7 +46,7 @@ public class main {
         //Service.ajouterEmploye(new Employe("Nom","PNom","mdp"), Service.findAllMedium());
 
         //Service.Inscription("Jean", "Moulin", "Monsieur", "31", "03", "1991", "jm@mail.com", "0782635917", "mdp", "adresse de JM");
-        Client c = Service.findClientById(101);
+/*        Client c = Service.findClientById(101);
         JpaUtil.creerEntityManager();
         Medium m = MediumDAO.findMediumByName("Mme Irma");
         JpaUtil.fermerEntityManager();
@@ -64,7 +64,10 @@ public class main {
             System.out.println("e est NULL :( ");
         }
         
-        JpaUtil.destroy();
+        JpaUtil.destroy();*/
+
+
+        
     }
     
     
