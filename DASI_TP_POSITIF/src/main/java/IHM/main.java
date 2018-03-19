@@ -46,28 +46,37 @@ public class main {
         //Service.ajouterEmploye(new Employe("Nom","PNom","mdp"), Service.findAllMedium());
 
         //Service.Inscription("Jean", "Moulin", "Monsieur", "31", "03", "1991", "jm@mail.com", "0782635917", "mdp", "adresse de JM");
-/*        Client c = Service.findClientById(101);
+        Client c = Service.findClientById(101);
         JpaUtil.creerEntityManager();
         Medium m = MediumDAO.findMediumByName("Mme Irma");
         JpaUtil.fermerEntityManager();
         Service.findAllMedium();
         Employe e = Service.trouverEmployeDispo(m);
-        if(e!=null){
-            System.out.println("employe ID = " + e.getNom()+ " "+e.getId());
-            //Employe e = Service.traiterDemandeDeVoyance(c, MediumDAO.findMediumByName("Mme Irma"));
-            Date debut = new Date();
-            System.out.println("minutes : "+debut.getMinutes());
-            //Date fin = debut + 10000;
-            Service.creerSession(c, e, m, debut, new Date(), "commentaire");
-            
-        }else{
-            System.out.println("e est NULL :( ");
+        //if(e!=null){
+            //System.out.println("employe ID = " + e.getNom()+ " "+e.getId());
+           //System.out.println(Service.traiterDemandeDeVoyance(c, m));
+//            Date debut = new Date();
+//            System.out.println("minutes : "+debut.getMinutes());
+//            //Date fin = debut + 10000;
+//            Service.creerSession(c, e, m, debut, new Date(), "commentaire");
+//            
+//        }else{
+//            System.out.println("e est NULL :( ");
+//        }
+        
+        Service.demarrerSession(c, e, m);
+        Service.cloturerSession(c, e, m, "commentaire");
+        
+
+        List<Employe> le = Service.findAllEmploye();
+        for(int i = 0; i < le.size(); ++i){
+            Employe e2 = le.get(i);
+            System.out.println(e2.getNom()+" "+e2.getPrenom());
+            System.out.println("Nb de sessions réalisées : "+Service.getAffectations(e2));
+            System.out.println("Pourcentage des sessions : "+Service.getPourcentageSessionEmploye(e2));
         }
         
-        JpaUtil.destroy();*/
-
-
-        
+        JpaUtil.destroy();
     }
     
     

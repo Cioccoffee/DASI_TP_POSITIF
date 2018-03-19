@@ -146,6 +146,7 @@ public class Service {
     public static String traiterDemandeDeVoyance(Client c, Medium m){
         
         Employe e = trouverEmployeDispo(m);
+        System.out.println("EMPLOYE CHOISI : "+e.getNom()+" "+e.getPrenom());
         if(e!=null) return notifierEmploye(c,m,e);
         else return "";
     }
@@ -175,8 +176,13 @@ public class Service {
             }
         }
         if(init){
+            JpaUtil.creerEntityManager();
+            JpaUtil.ouvrirTransaction();
             selected.setDisponibilite(false);
             selected.addAffectation();
+            EmployeDAO.updateEmploye(selected);
+            JpaUtil.validerTransaction();
+            JpaUtil.fermerEntityManager();
             return selected;
         }
         else return null;
@@ -189,6 +195,28 @@ public class Service {
         return s;
     }
     
+    public static void demarrerSession(Client c, Employe e, Medium m){
+        Date debut = new Date();
+        JpaUtil.creerEntityManager();
+        JpaUtil.ouvrirTransaction();
+        Session s = new Session(debut, c, e, m);
+        SessionDAO.creerSession(s);
+        JpaUtil.validerTransaction();
+        JpaUtil.fermerEntityManager();
+    }
+    public static void cloturerSession(Client c, Employe e, Medium m, String commentaire){
+        Date fin = new Date();
+        JpaUtil.creerEntityManager();
+        JpaUtil.ouvrirTransaction();
+        Session s = SessionDAO.findLastSessionClient(c.getId());
+        s.setFin(fin);
+        s.setComment(commentaire);
+        SessionDAO.updateSession(s);
+        e.setDisponibilite(true);
+        EmployeDAO.updateEmploye(e);
+        JpaUtil.validerTransaction();
+        JpaUtil.fermerEntityManager();
+    }
     
     public static void creerMedium()
     {
@@ -383,5 +411,10 @@ public class Service {
         return count;
     }
     
-    public static 
+    public static long getPourcentageSessionEmploye(Employe e){
+        JpaUtil.creerEntityManager();
+        long percentage = e.getAffectations()/SessionDAO.getTotalSession();
+        JpaUtil.fermerEntityManager();
+        return percentage;
+    }
 }

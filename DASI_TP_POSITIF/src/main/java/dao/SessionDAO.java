@@ -105,4 +105,19 @@ public class SessionDAO {
         query.setParameter("id", id);
         return query.getSingleResult();
     }
+    
+    public static long getTotalSession(){
+        TypedQuery<Long> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT count(s) FROM Session s", 
+                Long.class);
+        return query.getSingleResult();
+    }
+    
+    public static Session findLastSessionClient(int id){
+        TypedQuery<Session> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT c FROM Session c WHERE c.client = :id AND c.debut = (SELECT max(c.debut) FROM Session c WHERE c.client = :id)", 
+                Session.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
 }

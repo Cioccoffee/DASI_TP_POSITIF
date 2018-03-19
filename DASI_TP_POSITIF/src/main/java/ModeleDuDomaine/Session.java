@@ -84,6 +84,13 @@ public class Session {
     public Session() {
     }
 
+    public Session(Date debut, Client client, Employe employe, Medium medium) {
+        this.debut = debut;
+        this.client = client;
+        this.employe = employe;
+        this.medium = medium;
+    }
+
     public Session(Date debut, Date fin, String comment, Client client, Employe employe, Medium medium) {
         this.debut = debut;
         this.fin = fin;
