@@ -172,8 +172,42 @@ public class main extends JpaUtil{
         }
     }
     
-    public static void TestConsultation(){
+    public static void TestConsultation(Client c){
+        //display medium
+        System.out.println("Type de medium :");
+        System.out.println("1. Astrologue");
+        System.out.println("2. Tarologue :");
+        System.out.println("3. Voyant :");
+        int mediumType = Saisie.lireInteger("Veuillez choisir un type de Medium : ");
+        List<Medium> lm = new LinkedList<Medium>();
+        switch(mediumType){
+            case 1 : 
+                lm = Service.findAllAstro();
+                System.out.println("Liste des Astrologues :");
+                break;
+            case 2 :
+                lm = Service.findAllTaro();
+                System.out.println("Liste des Tarologues :");
+                break;
+            case 3 :
+                lm = Service.findAllVoyant();
+                System.out.println("Liste des Voyants :");
+                break;
+                
+            default :
+                System.out.println("ceci n'est pas un type de medium");
+                break;
+        }
         
+        for(int i = 0; i < lm.size(); i++){
+               lm.get(i).toString();
+        }
+        int idmedium = Saisie.lireInteger("Veuillez saisir l'id du Medium voulu : ");
+        Medium m = Service.findMediumById(idmedium);
+        Employe e = Service.traiterDemandeDeVoyance(c, m);
+        demarrerSession(c, e, m);
+        String comment = Saisie.lireChaine("Votre commentaire : ");
+        cloturerSession(c, e, m, comment);
     }
     
     public static void TestUI(){
