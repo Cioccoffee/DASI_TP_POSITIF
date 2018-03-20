@@ -42,5 +42,9 @@ public class Astrologue extends Medium{
     public Astrologue() {
     }
     
-    
+    public String toString(){
+        String s = super.toString();
+        s+=" Ecole : "+this.ecole+" Promotion : "+this.promotion;
+        return s;
+    }
 }
