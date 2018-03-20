@@ -245,18 +245,23 @@ public class main extends JpaUtil{
                     System.out.println(" Fin des actions côté client : ");
                     TestRealisationConsultation(c,m);
                     break;
-                    
+                case "5" :
+                    TestHistorique();
+                    break;
+                case "6" :
+                    TestStatistiques();
+                    break;
                 default :
                     break;
             }
             
-            System.out.println("Veuillez chosir l'action à réaliser : ");
+            System.out.println("Veuillez choisir l'action à réaliser : ");
             System.out.println("1.Inscrire un client"); 
             System.out.println("2.Se connecter");
             System.out.println("3.Consulter l'historique d'un client");
-            System.out.println("4.Faire une demande de consultation");
-            System.out.println("Générer une prédiction");
-            System.out.println("");
+            System.out.println("4.Faire et demander une consultation");
+            System.out.println("5.Afficher les employés");
+            System.out.println("6.Afficher les statistiques");
             System.out.println("");
             System.out.println("Afficher des éléments");
             
