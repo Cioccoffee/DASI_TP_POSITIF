@@ -114,8 +114,6 @@ public class Service {
             return true; 
     }
     
-    // QUID DU MDP ???????
-    // compléter pour les Dates et tel
     public static void ModifierClient(int id, String prenom, String nom, String civilite, 
             String jour, String mois, String annee, String mail, String telephone, 
             String mdp, String adresse){
@@ -420,6 +418,7 @@ public class Service {
        JpaUtil.fermerEntityManager();
    }
    
+   //a retirer
    public static void creerSession(Client c, Employe e, Medium m, Date debut, Date fin, String commentaire){
        Session s  = new Session(debut,fin,commentaire,c,e,m);
        JpaUtil.creerEntityManager();
@@ -435,7 +434,8 @@ public class Service {
         JpaUtil.fermerEntityManager();
         return c;
     }
-    
+   
+   //a retirer
    public static List<Session> findAllClientSession(int id){
        JpaUtil.creerEntityManager();
        List<Session> ls = SessionDAO.findSessionByClientId(id);
