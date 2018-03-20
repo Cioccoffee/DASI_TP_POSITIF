@@ -32,5 +32,9 @@ public class Voyant extends Medium{
     public Voyant() {
     }
     
-    
+    public String toString(){
+        String s = super.toString();
+        s+=" Support : "+this.support;
+        return s;
+    }
 }
