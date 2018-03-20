@@ -28,6 +28,7 @@ public class Saisie {
 
     public static Integer lireInteger(String invite) {
         Integer valeurLue = null;
+        System.out.print(invite);
         while (valeurLue == null) {
             try {
                 valeurLue = Integer.parseInt(lireChaine(invite));
@@ -40,6 +41,7 @@ public class Saisie {
 
     public static Integer lireInteger(String invite, List<Integer> valeursPossibles) {
         Integer valeurLue = null;
+        System.out.print(invite);
         while (valeurLue == null) {
             try {
                 valeurLue = Integer.parseInt(lireChaine(invite));

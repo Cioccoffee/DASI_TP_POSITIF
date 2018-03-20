@@ -17,9 +17,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.TypedQuery;
 import service.Service;
+import util.Saisie;
 
-public class main {
+public class main extends JpaUtil{
     
     //création persistence unit
     
@@ -124,5 +126,91 @@ public class main {
         JpaUtil.destroy();
     }
     
+    public static void TestInscription(){
+        System.out.println("Inscription");
+        String civilite = Saisie.lireChaine("Civilité : ");
+        String nom = Saisie.lireChaine("Nom : ");
+        String prenom = Saisie.lireChaine("Prénom : ");
+        String jour = Saisie.lireChaine("Date de naissance (Jour) : ");
+        String mois = Saisie.lireChaine("Date de naissance (Mois) : ");
+        String annee = Saisie.lireChaine("Date de naissance (Année) : ");
+        String adresse = Saisie.lireChaine("Adresse : ");
+        String telephone = Saisie.lireChaine("Telephone : ");
+        String mail = Saisie.lireChaine("Adresse mail : ");
+        String mdp = Saisie.lireChaine("Mot de passe : ");
+        
+        Service.Inscription(prenom, nom, civilite, jour, mois, annee, mail, telephone, mdp, adresse);
+    }
     
+    public static void TestConnexion(){
+        System.out.println("Connexion");
+        
+        String mail = Saisie.lireChaine("Adresse mail : ");
+        String mdp = Saisie.lireChaine("Mot de passe : ");
+        
+        System.out.println(Service.Connexion(mail, mdp));
+    }
+    
+    public static void TestHistorique(){
+        System.out.println("Voici les clients inscrits :");
+        List<Client> lc = new LinkedList<Client>();
+        TypedQuery<Client> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT c FROM Client c", 
+                Client.class);
+        lc = query.getResultList();
+        
+        for(int i = 0; i < lc.size(); i++){
+            Client c2 = lc.get(i);
+            System.out.println(c2.getId()+" "+c2.getNom()+" "+c2.getPrenom());
+        }
+        int id = Saisie.lireInteger(" Veuillez saisir un identifiant appartenant à cette liste : ");
+        
+        List<Session> ls = Service.getHistorique(Service.findClientById(id));
+        for(int i = 0; i < ls.size(); i++){
+            Session s = ls.get(i);
+            System.out.println(s.getDebut()+" "+s.getFin()+" "+s.getEmploye()+" "+s.getMedium()+" "+s.getClient());
+        }
+    }
+    
+    public static void TestConsultation(){
+        
+    }
+    
+    public static void TestUI(){
+        String action ="";
+        action = Saisie.lireChaine("Votre action : ");
+        
+        while(!action.equals("exit")){
+            
+            switch(action){
+                case "1" :
+                    TestInscription();
+                    break;
+                case "2" :
+                    TestConnexion();
+                    break;
+                case "3" :
+                    TestHistorique();
+                    break;
+                case "4" :
+                    TestConsultation();
+                    break;
+                    
+                default :
+                    break;
+            }
+            
+            System.out.println("Veuillez chosir l'action à réaliser : ");
+            System.out.println("1.Inscrire un client"); 
+            System.out.println("2.Se connecter");
+            System.out.println("3.Consulter l'historique d'un client");
+            System.out.println("4.Faire une demande de consultation");
+            System.out.println("Générer une prédiction");
+            System.out.println("");
+            System.out.println("");
+            System.out.println("Afficher des éléments");
+            
+            action = Saisie.lireChaine("Votre action : ");
+        }
+    }
 }

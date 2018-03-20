@@ -35,7 +35,7 @@ public class ClientDAO {
     public static Client findClientByName(String name, String fname)
     {
         TypedQuery<Client> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Client c WHERE c.name = :name AND c.firstname = :fname", 
+        "SELECT c FROM Client c WHERE c.name = :name AND c.firstname = :fname", 
                 Client.class);
         query.setParameter("name", name);
         query.setParameter("fname", fname);
