@@ -116,7 +116,7 @@ public class Service {
     
     // QUID DU MDP ???????
     // compléter pour les Dates et tel
-    public static void ModifyClient(int id, String prenom, String nom, String civilite, 
+    public static void ModifierClient(int id, String prenom, String nom, String civilite, 
             String jour, String mois, String annee, String mail, String telephone, 
             String mdp, String adresse){
         
@@ -567,7 +567,7 @@ public class Service {
         return percentage;
     }
     
-    public static List<String> getPredictions(Client c, int a, int s, int t) throws IOException{
+    public static List<String> genererPredictions(Client c, int a, int s, int t) throws IOException{
         JpaUtil.creerEntityManager();
         ProfilAstrologique pa = c.getProfil();
         JpaUtil.fermerEntityManager();

@@ -105,7 +105,7 @@ public class main extends JpaUtil{
         
         /*List<String> prediction = new LinkedList<String>();
         try {
-            prediction = Service.getPredictions(c, 4, 3, 4);
+            prediction = Service.genererPredictions(c, 4, 3, 4);
              for(int i = 0; i < prediction.size(); ++i){
                  System.out.println(prediction.get(i));
              }
@@ -226,7 +226,7 @@ public class main extends JpaUtil{
         int t = Saisie.lireInteger("Qualité de la prédiction en travail (de 1 à 4): ");
         try {
             List<String> prediction = new LinkedList<String>();
-            prediction = Service.getPredictions(c, a, s, t);
+            prediction = Service.genererPredictions(c, a, s, t);
             for(int i = 0; i < prediction.size(); ++i){
                 System.out.println(prediction.get(i));
             }
