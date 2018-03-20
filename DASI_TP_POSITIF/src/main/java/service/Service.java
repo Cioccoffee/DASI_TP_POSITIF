@@ -143,12 +143,14 @@ public class Service {
     @return String = notification Employe si employe dispo
             else = ""
     */
-    public static String traiterDemandeDeVoyance(Client c, Medium m){
+    public static Employe traiterDemandeDeVoyance(Client c, Medium m){
         
         Employe e = trouverEmployeDispo(m);
         System.out.println("EMPLOYE CHOISI : "+e.getNom()+" "+e.getPrenom());
-        if(e!=null) return notifierEmploye(c,m,e);
-        else return "";
+        if(e!=null){
+            System.out.println(notifierEmploye(c,m,e));
+            return e;
+        else return null;
     }
     
     public static Employe trouverEmployeDispo(Medium m){
