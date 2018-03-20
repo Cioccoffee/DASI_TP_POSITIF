@@ -222,6 +222,26 @@ public class main extends JpaUtil{
         String comment = Saisie.lireChaine("Votre commentaire : ");
         cloturerSession(c, e, m, comment);
     }
+    
+    public static void TestStatistiques(){
+        System.out.println("Statistiques");
+        System.out.println("Statistiques des employés");
+        List<Employe> le = Service.findAllEmploye();
+        for(int i = 0; i < le.size(); ++i){
+            Employe e2 = le.get(i);
+            System.out.println(e2.getNom()+" "+e2.getPrenom());
+            System.out.println("Nb de sessions réalisées : "+Service.getAffectations(e2));
+            System.out.println("Pourcentage des sessions : "+Service.getPourcentageSessionEmploye(e2));
+        }
+        System.out.println("Statistiques des mediums");
+        for(int i = 0; i < lm.size(); ++i){
+            Medium m2 = lm.get(i);
+            System.out.println(m2.getNom());
+            System.out.println("Nb de sessions réalisées : "+ Service.getNBSessionByMediumId(m2) );
+        }
+    }
+    
+    
     public static void TestUI(){
         String action ="";
         action = Saisie.lireChaine("Votre action : ");
@@ -246,11 +266,11 @@ public class main extends JpaUtil{
                     TestRealisationConsultation(c,m);
                     break;
                 case "5" :
-                    TestHistorique();
-                    break;
-                case "6" :
                     TestStatistiques();
                     break;
+                /*case "6" :
+                    
+                    break;*/
                 default :
                     break;
             }
@@ -260,8 +280,8 @@ public class main extends JpaUtil{
             System.out.println("2.Se connecter");
             System.out.println("3.Consulter l'historique d'un client");
             System.out.println("4.Faire et demander une consultation");
-            System.out.println("5.Afficher les employés");
-            System.out.println("6.Afficher les statistiques");
+            //System.out.println("5.Afficher les employés");
+            System.out.println("5.Afficher les statistiques");
             System.out.println("");
             System.out.println("Afficher des éléments");
             
