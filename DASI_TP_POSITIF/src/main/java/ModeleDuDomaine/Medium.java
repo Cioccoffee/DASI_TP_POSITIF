@@ -52,5 +52,7 @@ public class Medium /*implements Serializable*/ {
         return id;
     }
     
-    
+    public String toString(){
+        return "ID : "+this.id+" Nom : "+this.nom+" Bio : "+this.bio";
+    }
 }
