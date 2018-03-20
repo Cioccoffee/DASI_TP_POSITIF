@@ -6,6 +6,10 @@
 package dao;
 
 import ModeleDuDomaine.Client;
+
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -15,7 +19,12 @@ public class ClientDAO {
     
      public static void creerClient(Client c)
     {
-        JpaUtil.obtenirEntityManager().persist(c);
+        try {
+               JpaUtil.obtenirEntityManager().persist(c);
+            } catch (Exception ex) {
+                Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
     }
      
      public static void updateClient(Client c)

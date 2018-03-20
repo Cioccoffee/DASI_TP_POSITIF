@@ -5,15 +5,18 @@
  */
 package ModeleDuDomaine;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
+import static javax.persistence.DiscriminatorType.STRING;
 
 
 // @MappedSuperclass = uniquement si ce n'est pas une entité
 @Entity
-@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="medium_type")
-public class Medium {
+@Inheritance (strategy = InheritanceType.JOINED)
+/*@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="medium_type", discriminatorType = STRING)*/
+public class Medium /*implements Serializable*/ {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO) int id;
     protected String nom;

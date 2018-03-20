@@ -5,6 +5,7 @@
  */
 package dao;
 
+import ModeleDuDomaine.Client;
 import ModeleDuDomaine.Employe;
 import ModeleDuDomaine.Medium;
 import ModeleDuDomaine.Session;
@@ -98,11 +99,11 @@ public class SessionDAO {
         return query.getResultList();
     }
     
-    public static int getNBSessionByMediumId(int id){
-        TypedQuery<Integer> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT count(s) FROM Session s WHERE s.medium=:id", 
-                Integer.class);
-        query.setParameter("id", id);
+    public static long getNBSessionByMediumId(Medium m){
+        TypedQuery<Long> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT count(s) FROM Session s WHERE s.medium=:m", 
+                Long.class);
+        query.setParameter("m", m);
         return query.getSingleResult();
     }
     
@@ -113,11 +114,28 @@ public class SessionDAO {
         return query.getSingleResult();
     }
     
-    public static Session findLastSessionClient(int id){
+    public static Session findLastSessionClient(Client client){
         TypedQuery<Session> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT c FROM Session c WHERE c.client = :id AND c.debut = (SELECT max(c.debut) FROM Session c WHERE c.client = :id)", 
+        "SELECT c FROM Session c WHERE c.client = :client AND c.debut = (SELECT max(c.debut) FROM Session c WHERE c.client = :client)", 
                 Session.class);
-        query.setParameter("id", id);
-        return query.getSingleResult();
+        query.setParameter("client", client);
+        Session s = query.getSingleResult();
+        if(s==null){
+             query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT c FROM Session c WHERE c.client = :client AND c.debut = (SELECT max(c.debut) FROM Session c)", 
+                Session.class);
+            query.setParameter("client", client);
+            return query.getSingleResult();
+        }
+        else return s; 
+    }
+    
+    public static List<Session> findAllSessionClient(Client client){
+        TypedQuery<Session> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT c FROM Session c WHERE c.client = :client", 
+                Session.class);
+        query.setParameter("client", client);
+       return query.getResultList();
+
     }
 }

@@ -54,4 +54,25 @@ public class MediumDAO {
 //        
 //    }
     
+    public static List<Medium> findAllAstroAsMedium(){
+         TypedQuery<Medium> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT m FROM Medium m where m.medium_type =:type", 
+                Medium.class);
+         query.setParameter("type", "Astrologue");
+        return query.getResultList();
+    }
+    public static List<Medium> findAllTaroAsMedium(){
+        TypedQuery<Medium> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT m FROM Medium m where m.medium_type =:type", 
+                Medium.class);
+        query.setParameter("type", "Tarologue");
+        return query.getResultList();
+    }
+    public static List<Medium> findAllVoyantAsMedium(){
+        TypedQuery<Medium> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT m FROM Medium m where m.medium_type =:type", 
+                Medium.class);
+        query.setParameter("type", "Voyant");
+        return query.getResultList();
+    }
 }

@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 
 
 @Entity
-@DiscriminatorValue("Astrologue")
+//@DiscriminatorValue("Astrologue")
 public class Astrologue extends Medium{
     
     private String ecole;

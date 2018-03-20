@@ -21,13 +21,16 @@ public class EmployeDAO {
         JpaUtil.obtenirEntityManager().merge(e);
     }
      
-    public static Employe findEmployeByName(String name, String fname)
+    public static Employe findEmployeById(int id){
+        return JpaUtil.obtenirEntityManager().find(Employe.class ,id);
+    }
+    public static Employe findEmployeByName(String nom, String prenom)
     {
         TypedQuery<Employe> query = JpaUtil.obtenirEntityManager().createQuery(
-        "SELECT * FROM Employe c WHERE c.name = :name AND c.firstname = :fname", 
+        "SELECT e FROM Employe e WHERE e.nom = :nom AND e.prenom = :prenom", 
                 Employe.class);
-        query.setParameter("name", name);
-        query.setParameter("fname", fname);
+        query.setParameter("nom", nom);
+        query.setParameter("prenom", prenom);
         return query.getSingleResult();
     }
     

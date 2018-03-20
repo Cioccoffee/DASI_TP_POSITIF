@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 
 
 @Entity
-@DiscriminatorValue("Tarologue")
+//@DiscriminatorValue("Tarologue")
 public class Tarologue extends Medium{
     
     

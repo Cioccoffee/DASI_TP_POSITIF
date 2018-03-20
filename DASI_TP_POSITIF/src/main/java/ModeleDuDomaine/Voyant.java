@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 
 
 @Entity
-@DiscriminatorValue("Voyant")
+//@DiscriminatorValue("Voyant")
 public class Voyant extends Medium{
     
     private String support;
