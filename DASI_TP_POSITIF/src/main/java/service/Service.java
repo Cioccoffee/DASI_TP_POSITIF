@@ -8,7 +8,11 @@ package service;
 import ModeleDuDomaine.*;
 import dao.*;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -49,8 +53,17 @@ public class Service {
         //check unique mail
         if(VerifierUniciteMail(mail)){
             //int id = ClientDAO.getHighestID()+1;
-            Date naissance =new Date(Integer.parseInt(annee),Integer.parseInt(mois),Integer.parseInt(jour)); //init correctement
-            
+            //Calendar calendar = Calendar.getInstance();
+            GregorianCalendar g = new GregorianCalendar(Integer.parseInt(annee)/*+1900*/,Integer.parseInt(mois),Integer.parseInt(jour));
+            //g.getTime(); //init correctement
+            SimpleDateFormat sdf = new SimpleDateFormat("ddMMyy");
+            String birth =jour+mois+annee;
+            Date naissance = new Date();
+            try {
+                naissance = sdf.parse(birth);
+            } catch (ParseException ex) {
+                Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
+            }
             JpaUtil.ouvrirTransaction();
             
             Client c = new Client(civilite, nom, prenom, adresse, mail, mdp, telephone, naissance);
@@ -150,6 +163,7 @@ public class Service {
         if(e!=null){
             System.out.println(notifierEmploye(c,m,e));
             return e;
+        }
         else return null;
     }
     
@@ -334,6 +348,11 @@ public class Service {
        ajouterEmployeToMedium(e4,a1);
        ajouterEmployeToMedium(e4,a2);
        
+       //créer des sessions
+       //des clients
+       Inscription("Jean", "Moulin", "Monsieur", "31", "03", "1991", "jm@mail.com", "0782635917", "mdp", "10 rue des peupliers");
+       Inscription("Syvain","Durieux","Monsieur","15","04","1972","sd@monmail.com","0392731965","mdp","35 rue des acacias");
+       Inscription("Ghislaine","Bernard","Madame","24","02","1982","bg@monmail.com","0583691256","mdp","27 rue des Mimosas");
    }
     //methodes find
     
@@ -397,8 +416,11 @@ public class Service {
         return c;
     }
     
-   public static List<Session> findAllCLientSession(int id){
-       return SessionDAO.findSessionByClientId(id);
+   public static List<Session> findAllClientSession(int id){
+       JpaUtil.creerEntityManager();
+       List<Session> ls = SessionDAO.findSessionByClientId(id);
+       JpaUtil.fermerEntityManager();
+       return ls;
    }
     
     public static List<Tarologue> findAllTaro(){
@@ -430,6 +452,13 @@ public class Service {
         return lm;
     }
     
+    public static Medium findMediumById(int id){
+        JpaUtil.creerEntityManager();
+        Medium m = MediumDAO.findMediumById(id);
+        JpaUtil.fermerEntityManager();
+        return m;
+    }
+    
     public static List<Employe> findAllEmploye(){
         JpaUtil.creerEntityManager();
         List<Employe> le = EmployeDAO.findAllEmploye();
@@ -437,24 +466,46 @@ public class Service {
         return le;
     }
     
-    public static List<Medium> findAllVoyantAsMedium(){
+    public static Employe findEmployeById(int id){
         JpaUtil.creerEntityManager();
-        List<Medium> lam = MediumDAO.findAllVoyantAsMedium();
+        Employe e = EmployeDAO.findEmployeById(id);
         JpaUtil.fermerEntityManager();
-        return lam;
+        return e;
+    }
+    
+    public static List<Medium> findAllVoyantAsMedium(){
+        /*JpaUtil.creerEntityManager();
+        List<Medium> lvm = MediumDAO.findAllVoyantAsMedium();
+        JpaUtil.fermerEntityManager();*/
+        List<Voyant> lv = findAllVoyant();
+        List<Medium> lvm = new LinkedList<Medium>();
+        for(int i = 0; i < lv.size(); ++i){
+            lvm.add((Medium)lv.get(i));
+        }
+        return lvm;
     }
     
     public static List<Medium> findAllTaroAsMedium(){
-        JpaUtil.creerEntityManager();
-        List<Medium> lam = MediumDAO.findAllTaroAsMedium();
-        JpaUtil.fermerEntityManager();
-        return lam;
+        /*JpaUtil.creerEntityManager();
+        List<Medium> ltm = MediumDAO.findAllTaroAsMedium();
+        JpaUtil.fermerEntityManager();*/
+        List<Tarologue> lt = findAllTaro();
+        List<Medium> ltm = new LinkedList<Medium>();
+        for(int i = 0; i < lt.size(); ++i){
+            ltm.add((Medium)lt.get(i));
+        }
+        return ltm;
     }
     
     public static List<Medium> findAllAstroAsMedium(){
-        JpaUtil.creerEntityManager();
+        /*JpaUtil.creerEntityManager();
         List<Medium> lam = MediumDAO.findAllAstroAsMedium();
-        JpaUtil.fermerEntityManager();
+        JpaUtil.fermerEntityManager();*/
+        List<Astrologue> la = findAllAstro();
+        List<Medium> lam = new LinkedList<Medium>();
+        for(int i = 0; i < la.size(); ++i){
+            lam.add((Medium)la.get(i));
+        }
         return lam;
     }
     

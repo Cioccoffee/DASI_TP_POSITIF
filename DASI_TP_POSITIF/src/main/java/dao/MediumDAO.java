@@ -41,6 +41,14 @@ public class MediumDAO {
         return query.getResultList();
     }
     
+    public static Medium findMediumById(int id){
+        TypedQuery<Medium> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT m FROM Medium m where m.id=:id", 
+                Medium.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+    
 //    public static List<Medium> findAllMediumBySpeciality(String s)
 //    {
 //        
