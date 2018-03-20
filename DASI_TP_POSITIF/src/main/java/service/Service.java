@@ -348,11 +348,31 @@ public class Service {
        ajouterEmployeToMedium(e4,a1);
        ajouterEmployeToMedium(e4,a2);
        
-       //créer des sessions
        //des clients
        Inscription("Jean", "Moulin", "Monsieur", "31", "03", "1991", "jm@mail.com", "0782635917", "mdp", "10 rue des peupliers");
        Inscription("Syvain","Durieux","Monsieur","15","04","1972","sd@monmail.com","0392731965","mdp","35 rue des acacias");
        Inscription("Ghislaine","Bernard","Madame","24","02","1982","bg@monmail.com","0583691256","mdp","27 rue des Mimosas");
+   
+       //créer des sessions
+       List<Client> lc = new LinkedList<Client>();
+       JpaUtil.creerEntityManager();
+       lc = ClientDAO.findAllClient();
+       JpaUtil.fermerEntityManager();
+       for(int n = 0; n < 4; n++){
+           traiterDemandeDeVoyance(lc.get(n),a1);
+           demarrerSession(lc.get(n),e1,a1);
+           cloturerSession(lc.get(n),e1,a1,"ras");
+           
+           traiterDemandeDeVoyance(lc.get(n),v2);
+           demarrerSession(lc.get(n),e2,v2);
+           cloturerSession(lc.get(n),e2,v2,"ras");
+           
+           traiterDemandeDeVoyance(lc.get(n),t2);
+           demarrerSession(lc.get(n),e3,t2);
+           cloturerSession(lc.get(n),e3,t2,"ras");
+       }
+       //findMediumById();
+       
    }
     //methodes find
     

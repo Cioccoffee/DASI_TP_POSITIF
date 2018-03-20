@@ -8,6 +8,7 @@ package dao;
 import ModeleDuDomaine.Client;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.NoResultException;
@@ -60,6 +61,13 @@ public class ClientDAO {
            return null; 
         }
         
+    }
+    
+    public static List<Client> findAllClient(){
+        TypedQuery<Client> query = JpaUtil.obtenirEntityManager().createQuery(
+        "SELECT c FROM Client c", 
+                Client.class);
+        return query.getResultList();
     }
     
 //    public static int getHighestID(){
