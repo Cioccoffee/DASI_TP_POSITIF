@@ -172,7 +172,7 @@ public class main extends JpaUtil{
         }
     }
     
-    public static void TestConsultation(Client c){
+    public static Medium TestDemandeDeVoyance(Client c){
         //display medium
         System.out.println("Type de medium :");
         System.out.println("1. Astrologue");
@@ -203,13 +203,25 @@ public class main extends JpaUtil{
                lm.get(i).toString();
         }
         int idmedium = Saisie.lireInteger("Veuillez saisir l'id du Medium voulu : ");
-        Medium m = Service.findMediumById(idmedium);
+        //Medium m = 
+        return Service.findMediumById(idmedium);
+        
+    }
+    
+    public static void TestRealisationVoyance(Client c,Medium m){
         Employe e = Service.traiterDemandeDeVoyance(c, m);
+        System.out.println(" Début des actions côté employé : ");
+        //générer prédiction
+        int a = Saisie.lireInteger("Qualité de la prédiction en amour (de 1 à 4): ");
+        int s = Saisie.lireInteger("Qualité de la prédiction en santé (de 1 à 4): ");
+        int t = Saisie.lireInteger("Qualité de la prédiction en travail (de 1 à 4): ");
+        getPredictions(c, a, s, t);
         demarrerSession(c, e, m);
+        System.out.println(" Session créée ");
+        System.out.println(" Fin de session ");
         String comment = Saisie.lireChaine("Votre commentaire : ");
         cloturerSession(c, e, m, comment);
     }
-    
     public static void TestUI(){
         String action ="";
         action = Saisie.lireChaine("Votre action : ");
@@ -227,7 +239,11 @@ public class main extends JpaUtil{
                     TestHistorique();
                     break;
                 case "4" :
-                    TestConsultation();
+                    int idclient = Saisie.lireInteger("Veuillez saisir l'id du client voulu : ");
+                    Client c = Service.findClientById(idclient);
+                    Medium m = TestDemandeDeVoyance(c);
+                    System.out.println(" Fin des actions côté client : ");
+                    TestRealisationConsultation(c,m);
                     break;
                     
                 default :
