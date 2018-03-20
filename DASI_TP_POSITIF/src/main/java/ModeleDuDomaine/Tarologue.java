@@ -34,4 +34,9 @@ public class Tarologue extends Medium{
         this.cartes = cartes;
     }
     
+    public String toString(){
+        String s = super.toString();
+        s+=" Cartes : "+this.cartes;
+        return s;
+    }
 }
