@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ModeleDuDomaine;
 
 import java.io.Serializable;
@@ -10,19 +5,16 @@ import java.util.List;
 import javax.persistence.*;
 import static javax.persistence.DiscriminatorType.STRING;
 
-
-// @MappedSuperclass = uniquement si ce n'est pas une entité
 @Entity
 @Inheritance (strategy = InheritanceType.JOINED)
-/*@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="medium_type", discriminatorType = STRING)*/
-public class Medium /*implements Serializable*/ {
+public class Medium {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO) int id;
     protected String nom;
     protected String bio;
 
-    protected List<Employe> listEmploye /*= new List<Employe>()*/;
+    @OneToMany
+    protected List<Employe> listEmploye;
     
     public String getNom() {
         return nom;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
 
 import ModeleDuDomaine.*;
@@ -10,7 +5,6 @@ import dao.*;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
@@ -32,9 +26,7 @@ public class Service {
         JpaUtil.fermerEntityManager();
         // check mdp = right one
         if(c!=null && c.getMotdepasse().equals(mdp))
-        
             return c.getId();
-        
         else
             return -1; 
     }
@@ -52,10 +44,7 @@ public class Service {
         JpaUtil.creerEntityManager();
         //check unique mail
         if(VerifierUniciteMail(mail)){
-            //int id = ClientDAO.getHighestID()+1;
-            //Calendar calendar = Calendar.getInstance();
             GregorianCalendar g = new GregorianCalendar(Integer.parseInt(annee)/*+1900*/,Integer.parseInt(mois),Integer.parseInt(jour));
-            //g.getTime(); //init correctement
             SimpleDateFormat sdf = new SimpleDateFormat("ddMMyy");
             String birth =jour+mois+annee;
             Date naissance = new Date();
@@ -67,7 +56,6 @@ public class Service {
             JpaUtil.ouvrirTransaction();
             
             Client c = new Client(civilite, nom, prenom, adresse, mail, mdp, telephone, naissance);
-            
             
             //créer profil astro correspondant
             
@@ -155,7 +143,6 @@ public class Service {
             else = ""
     */
     public static Employe traiterDemandeDeVoyance(Client c, Medium m){
-        
         Employe e = trouverEmployeDispo(m);
         System.out.println("EMPLOYE CHOISI : "+e.getNom()+" "+e.getPrenom());
         if(e!=null){
@@ -166,7 +153,6 @@ public class Service {
     }
     
     public static Employe trouverEmployeDispo(Medium m){
-        //MediumDAO.findMediumByName(name);
         JpaUtil.creerEntityManager();
         int min_affectations = EmployeDAO.getMaxAffectations();
         JpaUtil.fermerEntityManager();
@@ -237,24 +223,7 @@ public class Service {
         JpaUtil.fermerEntityManager();
     }
     
-    public static void creerMedium()
-    {
-        
-        JpaUtil.creerEntityManager();
-        JpaUtil.ouvrirTransaction();
-        
-        //Voyant v = new Voyant("J. Dalmarre", "Votre avenir est devant vous : regardons-le ensemble !", "Marc de Café");
-        //VoyantDAO.creerVoyant(v);
-        
-        Tarologue t = new Tarologue("Mme Irma", "Comprenez votre entourage grâce à mes cartes ! Résultats rapides.", "Tarot de Marseille");
-        TarologueDAO.creerTarologue(t);
-        Astrologue a = new Astrologue("Mme Mounia Mounia", "Avenir, avenir, que nous réserves-tu ? N'attendez plus, demandez à me consulter !", "Institut des Nouveaux Savoirs Astrologiques", "2010");
-        AstrologueDAO.creerAstrologue(a);
-        
-        JpaUtil.validerTransaction();
-        JpaUtil.fermerEntityManager();
-        
-    }
+    //methodes de création
     
     public static Medium creerTarologue(String nom, String commentaire, String cartes)
     {
@@ -265,38 +234,39 @@ public class Service {
         TarologueDAO.creerTarologue(t);
         JpaUtil.validerTransaction();
         JpaUtil.fermerEntityManager();
-        return t;
         
+        return t;
     }
     
     public static Medium creerAstrologue(String nom, String bio, String ecole, String promo)
     {
-        Astrologue t = new Astrologue(nom,bio,ecole,promo);
+        Astrologue a = new Astrologue(nom,bio,ecole,promo);
         
         JpaUtil.creerEntityManager();
         JpaUtil.ouvrirTransaction();
-        AstrologueDAO.creerAstrologue(t);
+        AstrologueDAO.creerAstrologue(a);
         JpaUtil.validerTransaction();
         JpaUtil.fermerEntityManager();
-        return t;
+        
+        return a;
     }
     
     public static Medium creerVoyant(String nom, String commentaire, String support)
     {
-        Voyant t = new Voyant(nom,commentaire,support);
+        Voyant v = new Voyant(nom,commentaire,support);
         
         JpaUtil.creerEntityManager();
         JpaUtil.ouvrirTransaction();
-        VoyantDAO.creerVoyant(t);
+        VoyantDAO.creerVoyant(v);
         JpaUtil.validerTransaction();
         JpaUtil.fermerEntityManager();
         
-        return t;
+        return v;
     }
     
    public static void initDB()
    {
-  /*     Medium v1 = Service.creerVoyant("Gwenaël", "Spécialistes au-delà de TOUTES les frontières.","Boule de Cristal");
+       Medium v1 = Service.creerVoyant("Gwenaël", "Spécialistes au-delà de TOUTES les frontières.","Boule de Cristal");
        Medium v2 = Service.creerVoyant("J. Dalmarre", "Votre avenir est devant vous : regardons-le ensemble !","Marc de Café");
        
        Medium t1 = Service.creerTarologue("Mme Irma", "Comprenez votre entourage grâce à mes cartes ! Résultats rapides", "Tarot de Marseille");
@@ -304,50 +274,25 @@ public class Service {
        
        Medium a1 = Service.creerAstrologue("Mme Sara", "Basée à Champigny-sur-Marne, Mme Sara vous révèlera votre avenir pour éclairer votre passé", "Ecole Normale Supérieure d'Astrologie (ENS-Astro)", "2006");
        Medium a2 = Service.creerAstrologue("Mme Mounia Mounia", "Avenir, avenir, que nous réserves-tu ? N'attendez plus, demandez à me consulter !", "Institut des Nouveaux Savoirs Astrologiques", "2010");
-  */     
-//       //List<Astrologue> la = findAllAstro();
-//       List<Medium> lam = new LinkedList<Medium>();
-//       lam = findAllAstroAsMedium();
-//       /*for(int i = 0; i < la.size(); i++){
-//           lam.add((Medium)la.get(i));
-//       }*/
-//       //List<Voyant> lv = findAllVoyant();
-//       List<Medium> lvm = new LinkedList<Medium>();
-//       lvm = findAllVoyantAsMedium();
-//       /*for(int i = 0; i < lv.size(); i++){
-//           lvm.add((Medium)lv.get(i));
-//       }*/
-//       //List<Tarologue> lt = findAllTaro();
+         
+       List<Medium> lam = new LinkedList<Medium>();
+       lam = findAllAstroAsMedium();
+       
+       List<Medium> lvm = new LinkedList<Medium>();
+       lvm = findAllVoyantAsMedium();
+       
        List<Medium> ltm = new LinkedList<Medium>();
        ltm = findAllTaroAsMedium();
-//       /*for(int i = 0; i < lt.size(); i++){
-//           ltm.add((Medium)lt.get(i));
-//       }*/
-//       List<Medium> lm = findAllMedium();
-        Service.creerEmploye("Kangoo", "Sébastien", "mdp",ltm);
-//       Employe e1 = Service.creerEmploye("GIREUX", "Zouhair", "mdp"/*,lam*/);
-//       Employe e2 = Service.creerEmploye("TCHIUMAKOVA", "Nicolas", "mdp"/*,lvm*/);
-//       Employe e3 = Service.creerEmploye("KEMARO", "Cédric", "mdp"/*,ltm*/);
-//       Employe e4 = Service.creerEmploye("PAMITESCU", "Olena", "mdp"/*,lm*/);
+       List<Medium> lm = findAllMedium();
        
-       /*ajouterEmployeToMedium(e1,a1);
-       ajouterEmployeToMedium(e1,a2);
-       
-       ajouterEmployeToMedium(e2,v1);
-       ajouterEmployeToMedium(e2,v2);
-       
-       ajouterEmployeToMedium(e3,t1);
-       ajouterEmployeToMedium(e3,t2);
-       
-       ajouterEmployeToMedium(e4,v1);
-       ajouterEmployeToMedium(e4,v2);
-       ajouterEmployeToMedium(e4,t1);
-       ajouterEmployeToMedium(e4,t2);
-       ajouterEmployeToMedium(e4,a1);
-       ajouterEmployeToMedium(e4,a2);*/
+       Service.creerEmploye("Kangoo", "Sébastien", "mdp",ltm);
+       Employe e1 = Service.creerEmploye("GIREUX", "Zouhair", "mdp",lam);
+       Employe e2 = Service.creerEmploye("TCHIUMAKOVA", "Nicolas", "mdp",lvm);
+       Employe e3 = Service.creerEmploye("KEMARO", "Cédric", "mdp",ltm);
+       Employe e4 = Service.creerEmploye("PAMITESCU", "Olena", "mdp",lm);
        
        //des clients
-       /*Inscription("Jean", "Moulin", "Monsieur", "31", "03", "1991", "jm@mail.com", "0782635917", "mdp", "10 rue des peupliers");
+       Inscription("Jean", "Moulin", "Monsieur", "31", "03", "1991", "jm@mail.com", "0782635917", "mdp", "10 rue des peupliers");
        Inscription("Syvain","Durieux","Monsieur","15","04","1972","sd@monmail.com","0392731965","mdp","35 rue des acacias");
        Inscription("Ghislaine","Bernard","Madame","24","02","1982","bg@monmail.com","0583691256","mdp","27 rue des Mimosas");
    
@@ -368,17 +313,11 @@ public class Service {
            traiterDemandeDeVoyance(lc.get(n),t2);
            demarrerSession(lc.get(n),e3,t2);
            cloturerSession(lc.get(n),e3,t2,"ras");
-       }*/
-       //findMediumById();
+       }
        
    }
-    //methodes find
     
    public static Employe creerEmploye(String nom, String prenom, String mdp){
-       /*List<Medium> lm = new LinkedList<Medium>();
-       lm.add(new Medium());
-       lm.clear();
-       creerEmploye(nom,prenom,mdp, lm);*/
        Employe e = new Employe(nom, prenom, mdp);
        
        JpaUtil.creerEntityManager();
@@ -404,8 +343,8 @@ public class Service {
        JpaUtil.fermerEntityManager();
         
        for(int i = 0; i < lm.size(); i++)
-            
            ajouterEmployeToMedium(e,lm.get(i));
+       
         return e;
    }
    
@@ -418,15 +357,7 @@ public class Service {
        JpaUtil.fermerEntityManager();
    }
    
-   //a retirer
-   public static void creerSession(Client c, Employe e, Medium m, Date debut, Date fin, String commentaire){
-       Session s  = new Session(debut,fin,commentaire,c,e,m);
-       JpaUtil.creerEntityManager();
-       JpaUtil.ouvrirTransaction();
-       SessionDAO.creerSession(s);
-       JpaUtil.validerTransaction();
-       JpaUtil.fermerEntityManager();
-   }
+   //methodes find
    
    public static Client findClientById(int id){
         JpaUtil.creerEntityManager();
@@ -434,14 +365,6 @@ public class Service {
         JpaUtil.fermerEntityManager();
         return c;
     }
-   
-   //a retirer
-   public static List<Session> findAllClientSession(int id){
-       JpaUtil.creerEntityManager();
-       List<Session> ls = SessionDAO.findSessionByClientId(id);
-       JpaUtil.fermerEntityManager();
-       return ls;
-   }
     
     public static List<Tarologue> findAllTaro(){
         JpaUtil.creerEntityManager();
@@ -453,7 +376,6 @@ public class Service {
     public static List<Astrologue> findAllAstro(){
         JpaUtil.creerEntityManager();
         List<Astrologue> la = AstrologueDAO.findAllAstro();
-        
         JpaUtil.fermerEntityManager();
         return la;
     }
@@ -494,9 +416,6 @@ public class Service {
     }
     
     public static List<Medium> findAllVoyantAsMedium(){
-        /*JpaUtil.creerEntityManager();
-        List<Medium> lvm = MediumDAO.findAllVoyantAsMedium();
-        JpaUtil.fermerEntityManager();*/
         List<Voyant> lv = findAllVoyant();
         List<Medium> lvm = new LinkedList<Medium>();
         for(int i = 0; i < lv.size(); ++i){
@@ -506,9 +425,6 @@ public class Service {
     }
     
     public static List<Medium> findAllTaroAsMedium(){
-        /*JpaUtil.creerEntityManager();
-        List<Medium> ltm = MediumDAO.findAllTaroAsMedium();
-        JpaUtil.fermerEntityManager();*/
         List<Tarologue> lt = findAllTaro();
         List<Medium> ltm = new LinkedList<Medium>();
         for(int i = 0; i < lt.size(); ++i){
@@ -518,9 +434,6 @@ public class Service {
     }
     
     public static List<Medium> findAllAstroAsMedium(){
-        /*JpaUtil.creerEntityManager();
-        List<Medium> lam = MediumDAO.findAllAstroAsMedium();
-        JpaUtil.fermerEntityManager();*/
         List<Astrologue> la = findAllAstro();
         List<Medium> lam = new LinkedList<Medium>();
         for(int i = 0; i < la.size(); ++i){
@@ -533,7 +446,6 @@ public class Service {
         List<Employe> le = new LinkedList<Employe>();
         le = Service.findAllEmploye();
         for(int i = 0; i < le.size(); i++){
-            //System.out.println(le.get(i).getNom()+" "+i);
             JpaUtil.creerEntityManager();
             JpaUtil.ouvrirTransaction();
             le.get(i).setDisponibilite(true);
@@ -544,8 +456,6 @@ public class Service {
     }
     
     //statistiques
-    //nb de voyances/med et /emp
-    // % / emp des sessions
     
     public static int getAffectations(Employe e){
         return e.getAffectations();
