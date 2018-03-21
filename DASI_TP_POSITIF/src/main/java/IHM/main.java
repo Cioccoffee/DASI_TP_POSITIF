@@ -30,7 +30,7 @@ public class main extends JpaUtil{
     {
         JpaUtil.init();
         
-        //Service.initDB();
+        Service.initDB();
 //        Service.Inscription("Prenom", "nom"," civilite", "1", "1", "1", "mail", "telephone", "mdp", "adresse");
 //       
 //        
@@ -126,7 +126,7 @@ public class main extends JpaUtil{
         }*/
         Service.reinitDispoEmploye();
         //TestUI();
-        Inscription("Lucie","G","Mademoiselle","31","03","1997","lucie@monmail.com","0583691256","mdp","32 rue des cochards");
+        //Inscription("Lucie","G","Mademoiselle","31","03","1997","lucie@monmail.com","0583691256","mdp","32 rue des cochards");
         
         JpaUtil.destroy();
     }

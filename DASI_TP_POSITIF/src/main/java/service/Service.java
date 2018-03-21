@@ -296,7 +296,7 @@ public class Service {
     
    public static void initDB()
    {
-       Medium v1 = Service.creerVoyant("Gwenaël", "Spécialistes au-delà de TOUTES les frontières.","Boule de Cristal");
+  /*     Medium v1 = Service.creerVoyant("Gwenaël", "Spécialistes au-delà de TOUTES les frontières.","Boule de Cristal");
        Medium v2 = Service.creerVoyant("J. Dalmarre", "Votre avenir est devant vous : regardons-le ensemble !","Marc de Café");
        
        Medium t1 = Service.creerTarologue("Mme Irma", "Comprenez votre entourage grâce à mes cartes ! Résultats rapides", "Tarot de Marseille");
@@ -304,7 +304,7 @@ public class Service {
        
        Medium a1 = Service.creerAstrologue("Mme Sara", "Basée à Champigny-sur-Marne, Mme Sara vous révèlera votre avenir pour éclairer votre passé", "Ecole Normale Supérieure d'Astrologie (ENS-Astro)", "2006");
        Medium a2 = Service.creerAstrologue("Mme Mounia Mounia", "Avenir, avenir, que nous réserves-tu ? N'attendez plus, demandez à me consulter !", "Institut des Nouveaux Savoirs Astrologiques", "2010");
-       
+  */     
 //       //List<Astrologue> la = findAllAstro();
 //       List<Medium> lam = new LinkedList<Medium>();
 //       lam = findAllAstroAsMedium();
@@ -318,19 +318,19 @@ public class Service {
 //           lvm.add((Medium)lv.get(i));
 //       }*/
 //       //List<Tarologue> lt = findAllTaro();
-//       List<Medium> ltm = new LinkedList<Medium>();
-//       ltm = findAllTaroAsMedium();
+       List<Medium> ltm = new LinkedList<Medium>();
+       ltm = findAllTaroAsMedium();
 //       /*for(int i = 0; i < lt.size(); i++){
 //           ltm.add((Medium)lt.get(i));
 //       }*/
 //       List<Medium> lm = findAllMedium();
+        Service.creerEmploye("Kangoo", "Sébastien", "mdp",ltm);
+//       Employe e1 = Service.creerEmploye("GIREUX", "Zouhair", "mdp"/*,lam*/);
+//       Employe e2 = Service.creerEmploye("TCHIUMAKOVA", "Nicolas", "mdp"/*,lvm*/);
+//       Employe e3 = Service.creerEmploye("KEMARO", "Cédric", "mdp"/*,ltm*/);
+//       Employe e4 = Service.creerEmploye("PAMITESCU", "Olena", "mdp"/*,lm*/);
        
-       Employe e1 = Service.creerEmploye("GIREUX", "Zouhair", "mdp"/*,lam*/);
-       Employe e2 = Service.creerEmploye("TCHIUMAKOVA", "Nicolas", "mdp"/*,lvm*/);
-       Employe e3 = Service.creerEmploye("KEMARO", "Cédric", "mdp"/*,ltm*/);
-       Employe e4 = Service.creerEmploye("PAMITESCU", "Olena", "mdp"/*,lm*/);
-       
-       ajouterEmployeToMedium(e1,a1);
+       /*ajouterEmployeToMedium(e1,a1);
        ajouterEmployeToMedium(e1,a2);
        
        ajouterEmployeToMedium(e2,v1);
@@ -344,10 +344,10 @@ public class Service {
        ajouterEmployeToMedium(e4,t1);
        ajouterEmployeToMedium(e4,t2);
        ajouterEmployeToMedium(e4,a1);
-       ajouterEmployeToMedium(e4,a2);
+       ajouterEmployeToMedium(e4,a2);*/
        
        //des clients
-       Inscription("Jean", "Moulin", "Monsieur", "31", "03", "1991", "jm@mail.com", "0782635917", "mdp", "10 rue des peupliers");
+       /*Inscription("Jean", "Moulin", "Monsieur", "31", "03", "1991", "jm@mail.com", "0782635917", "mdp", "10 rue des peupliers");
        Inscription("Syvain","Durieux","Monsieur","15","04","1972","sd@monmail.com","0392731965","mdp","35 rue des acacias");
        Inscription("Ghislaine","Bernard","Madame","24","02","1982","bg@monmail.com","0583691256","mdp","27 rue des Mimosas");
    
@@ -368,7 +368,7 @@ public class Service {
            traiterDemandeDeVoyance(lc.get(n),t2);
            demarrerSession(lc.get(n),e3,t2);
            cloturerSession(lc.get(n),e3,t2,"ras");
-       }
+       }*/
        //findMediumById();
        
    }
@@ -392,7 +392,7 @@ public class Service {
        return e;
    }
    
-   public static void creerEmploye(String nom, String prenom, String mdp, List<Medium> lm){
+   public static Employe creerEmploye(String nom, String prenom, String mdp, List<Medium> lm){
        Employe e = new Employe(nom, prenom, mdp);
        
        JpaUtil.creerEntityManager();
@@ -406,7 +406,7 @@ public class Service {
        for(int i = 0; i < lm.size(); i++)
             
            ajouterEmployeToMedium(e,lm.get(i));
-        
+        return e;
    }
    
    public static void ajouterEmployeToMedium(Employe e, Medium m){
